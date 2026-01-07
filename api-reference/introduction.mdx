@@ -9,27 +9,24 @@ Welcome to the Pooler Developer API documentation. This API provides comprehensi
 
 The Pooler API enables you to:
 
-- **Process Payments**: Send and receive payments across multiple currencies and countries
-- **Manage Virtual Accounts**: Create virtual accounts for collecting payments from customers
-- **Handle Recipients**: Manage payment recipients and their bank account details
-- **Foreign Exchange**: Access real-time FX rates and quotes for currency conversions
-- **Webhooks**: Receive real-time notifications about payment events
-- **Utilities**: Access tools for account verification and institution lookup
+| Capability | Description |
+|------------|-------------|
+| **Process Payments** | Send and receive payments across multiple currencies and countries |
+| **Manage Virtual Accounts** | Create virtual accounts for collecting payments from customers |
+| **Handle Recipients** | Manage payment recipients and their bank account details |
+| **Foreign Exchange** | Access real-time FX rates and quotes for currency conversions |
+| **Webhooks** | Receive real-time notifications about payment events |
+| **Utilities** | Access tools for account verification and institution lookup |
 
-<Card
-  title="Pooler API Specification"
-  icon="code"
-  href="https://github.com/usepooler/pooler-api-docs/blob/main/api-reference/openapi.json"
->
-  View the complete OpenAPI specification file
-</Card>
 
 ## Getting Started
 
 ### Base URL
 
-- **Production**: `https://api.usepooler.com`
-- **Sandbox**: `https://sandbox.usepooler.com`
+| Environment | URL |
+|-------------|-----|
+| **Production** | `https://api.usepooler.com` |
+| **Sandbox** | `https://studio.usepooler.com` |
 
 ### Authentication
 
@@ -39,21 +36,11 @@ All API endpoints require authentication using Bearer tokens. Include your API k
 Authorization: Bearer YOUR_API_KEY
 ```
 
-The API uses Bearer token authentication as defined in the OpenAPI specification:
-
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
-```
-
 ### API Keys
 
 To get your API keys:
 
-1. Sign up for a Pooler account at [dashboard.usepooler.com](https://dashboard.usepooler.com)
+1. Sign up for a Pooler account at [app.usepooler.com](https://app.usepooler.com)
 2. Navigate to the API section in your dashboard
 3. Generate your API keys (separate keys for test and live modes)
 
@@ -65,13 +52,15 @@ To get your API keys:
 
 The Pooler API is organized into the following main sections:
 
-- **Business**: Account management and merchant information
-- **Payments**: Payment initiation, confirmation, and status queries
-- **Accounts**: Virtual account creation and management
-- **Recipients**: Payment recipient management
-- **Webhooks**: Event management and delivery
-- **FX**: Foreign exchange rates and quotes
-- **Utilities**: Helper endpoints for verification and lookup
+| Section | Description |
+|---------|-------------|
+| **Business** | Account management and merchant information |
+| **Payments** | Payment initiation, confirmation, and status queries |
+| **Accounts** | Virtual account creation and management |
+| **Recipients** | Payment recipient management |
+| **Webhooks** | Event management and delivery |
+| **FX** | Foreign exchange rates and quotes |
+| **Utilities** | Helper endpoints for verification and lookup |
 
 ## Response Format
 
@@ -86,10 +75,12 @@ All API responses follow a consistent structure:
 }
 ```
 
-- `success`: Boolean indicating request success
-- `message`: Human-readable response message
-- `stan`: System Trace Audit Number (unique transaction identifier)
-- `data`: Response payload (varies by endpoint)
+| Field | Description |
+|-------|-------------|
+| `success` | Boolean indicating request success |
+| `message` | Human-readable response message |
+| `stan` | System Trace Audit Number (unique transaction identifier) |
+| `data` | Response payload (varies by endpoint) |
 
 ## Error Handling
 
@@ -106,26 +97,22 @@ When an error occurs, the API returns an error response:
 
 Common HTTP status codes:
 
-- `200 OK`: Request successful
-- `201 Created`: Resource created successfully
-- `202 Accepted`: Request accepted for processing
-- `400 Bad Request`: Invalid request parameters
-- `401 Unauthorized`: Invalid or missing authentication
-- `404 Not Found`: Resource not found
-- `500 Internal Server Error`: Server error
-
-## Rate Limits
-
-API rate limits apply to prevent abuse. Check the response headers for rate limit information:
-
-- `X-RateLimit-Limit`: Maximum requests per window
-- `X-RateLimit-Remaining`: Remaining requests in current window
-- `X-RateLimit-Reset`: Time when the rate limit resets
+| Status Code | Description |
+|-------------|-------------|
+| `200 OK` | Request successful |
+| `201 Created` | Resource created successfully |
+| `202 Accepted` | Request accepted for processing |
+| `400 Bad Request` | Invalid request parameters |
+| `401 Unauthorized` | Invalid or missing authentication |
+| `404 Not Found` | Resource not found |
+| `500 Internal Server Error` | Server error |
 
 ## Support
 
 For API support and questions:
 
-- **Email**: tech@usepooler.com
-- **Dashboard**: [dashboard.usepooler.com](https://dashboard.usepooler.com)
-- **Documentation**: This documentation site
+| Resource | Details |
+|----------|---------|
+| **Email** | tech@usepooler.com |
+| **Dashboard** | [app.usepooler.com](https://app.usepooler.com) |
+| **Documentation** | This documentation site |
