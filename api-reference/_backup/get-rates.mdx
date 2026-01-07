@@ -1,0 +1,26 @@
+---
+title: 'Get Rates'
+openapi: 'GET /fx/rates'
+---
+
+Retrieve current foreign exchange rates for supported currencies. This endpoint provides real-time exchange rates for all supported currency pairs.
+
+## Overview
+
+This endpoint returns the current foreign exchange rates for all supported currencies. Rates are updated regularly and include processing fees.
+
+## Response
+
+<ResponseField name="data" type="array">
+  Array of FX rate objects, each containing:
+  
+  - `currency`: Currency code (e.g., "USD", "NGN", "KES")
+  - `processing_fee`: Processing fee percentage
+  - `rate_in_usd`: Exchange rate relative to USD
+  - `updated_at`: Timestamp when rate was last updated
+</ResponseField>
+
+<Note>
+  Exchange rates are updated in real-time. Always fetch fresh rates before initiating currency conversion transactions.
+</Note>
+

@@ -1,0 +1,42 @@
+---
+title: 'Retrieve Payment'
+openapi: 'GET /payments/{id}'
+---
+
+Retrieve detailed information about a specific payment transaction by its ID.
+
+## Overview
+
+This endpoint returns comprehensive details about a single payment transaction, including all metadata, status information, and transaction history.
+
+## Path Parameters
+
+<ParamField path="id" type="string" required>
+  Payment transaction UUID
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="object">
+  Complete payment transaction object including:
+  
+  - `id`: Payment transaction ID
+  - `reference`: Payment reference number
+  - `amount`: Payment amount
+  - `currency`: Currency code
+  - `description`: Payment description
+  - `status`: Current payment status
+  - `type`: Transaction type (debit/credit)
+  - `sub_type`: Transaction sub-type
+  - `category`: Transaction category
+  - `sub_category`: Transaction sub-category
+  - `channel`: Payment channel used
+  - `tags`: Transaction tags
+  - `notes`: Additional notes
+  - `is_reversed`: Whether payment was reversed
+  - `is_completed`: Whether payment is completed
+  - `transaction_date`: When transaction occurred
+  - `created_at`: Creation timestamp
+  - `updated_at`: Last update timestamp
+</ResponseField>
+

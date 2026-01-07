@@ -1,0 +1,25 @@
+---
+title: 'Get Supported Corridors'
+openapi: 'GET /utils/country-coverage'
+---
+
+Retrieve a list of supported payment corridors (country and currency combinations) for payouts. This shows which countries and currencies you can send payments to.
+
+## Overview
+
+This endpoint returns all supported payment corridors, indicating which countries and currencies are available for payout services. Each corridor specifies the country, supported currency, and service coverage type.
+
+## Response
+
+<ResponseField name="data" type="array">
+  Array of country coverage objects, each containing:
+  
+  - `country_iso_code`: ISO country code (e.g., "GH", "KE", "NG")
+  - `supported_currency`: Currency code supported for that country (e.g., "GHS", "KES", "NGN")
+  - `service_coverage`: Type of service coverage (e.g., "payouts")
+</ResponseField>
+
+<Note>
+  Supported corridors may change over time. Always check this endpoint to verify current availability before initiating cross-border payments.
+</Note>
+

@@ -1,0 +1,136 @@
+---
+title: 'Quickstart'
+description: 'Get started with Pooler in minutes - Access your dashboard, configure webhooks, and test payments'
+icon: play
+---
+
+Get up and running with Pooler in just a few minutes. This guide will walk you through accessing your dashboard, configuring your API keys, setting up webhooks, and testing payments using our demo banking simulator.
+
+## Prerequisites
+
+Before you begin, make sure you have:
+
+- A Pooler account (sign up at [usepooler.com](https://usepooler.com))
+- Access to your email for account verification
+- Basic understanding of REST APIs
+
+<Info>
+  New to Pooler? Check out our [Introduction](/guides/getting-started/introduction) guide for an overview of our platform.
+</Info>
+
+## Step 1: Access Your Dashboard
+
+The Pooler dashboard is your central hub for managing your account, viewing transactions, and configuring settings.
+
+### Accessing the Dashboard
+
+1. Navigate to [app.usepooler.com](https://app.usepooler.com) or click "Dashboard" from the main website
+2. Log in with your Pooler account credentials
+3. If you don't have an account, click "Sign Up" to create one
+
+![Pooler Dashboard](/images/dashboard-overview.png)
+
+### Dashboard Overview
+
+Once logged in, you'll see:
+
+- **Overview Dashboard** - Key metrics, recent transactions, and account balance
+- **Transactions** - View and filter all payment transactions
+- **Virtual Accounts** - Manage your virtual accounts
+- **Recipients** - Manage payment recipients
+- **Settings** - Configure account settings, API keys, and webhooks
+- **Analytics** - View reports and analytics
+
+<Tip>
+  Bookmark the dashboard URL for quick access. You'll use it frequently to monitor transactions and manage your account.
+</Tip>
+
+## Step 2: Access the Developers Page
+
+The Developers page is where you'll find your API keys, test credentials, and API documentation.
+
+### Finding the Developers Page
+
+1. From your dashboard, click on **Settings** in the left sidebar
+2. Navigate to **Developers** or **API Keys** section
+3. Alternatively, you can access it directly at [app.usepooler.com/developers](https://app.usepooler.com/developers)
+
+![Developers Page - API Keys](/images/developers-page.png)
+
+### What You'll Find on the Developers Page
+
+- **API Keys** - Your live and test API keys
+- **Webhook Configuration** - Manage webhook endpoints
+- **Test Credentials** - Demo accounts and test data
+- **API Version** - Current API version information
+
+<Warning>
+  Keep your API keys secure. Never commit them to version control or share them publicly. Use environment variables in your application.
+</Warning>
+
+### Getting Your API Keys
+
+1. On the Developers page, locate the **API Keys** section
+2. You'll see two keys:
+   - **Test Key** - For testing in sandbox mode (starts with `test_`)
+   - **Live Key** - For production use (starts with `live_`)
+3. Click **Show** or **Reveal** to view your API key
+4. Click **Copy** to copy the key to your clipboard
+
+<Info>
+  Test keys are safe to use in development and testing environments. Live keys should only be used in production applications.
+</Info>
+
+## Webhook Security
+
+Pooler signs all webhook requests with a secret key. Verify the signature to ensure requests are authentic:
+
+1. Get your webhook secret from the Developers page
+2. Verify the signature in your webhook handler
+3. Reject requests with invalid signatures
+
+<Warning>
+  Always verify webhook signatures in production. This prevents unauthorized requests from being processed.
+</Warning>
+
+For detailed webhook security information, see our [Webhook Signature Security](/guides/webhooks/signature-security) guide.
+
+## Step 3: Test with Demo Banking Simulator
+
+Pooler provides a demo banking simulator that allows you to test payment flows without using real money or bank accounts.
+
+### What is the Demo Banking Simulator?
+
+The demo banking simulator is a testing environment that mimics real banking behavior, allowing you to:
+
+- Test payment initiation and completion
+- Simulate different payment scenarios (success, failure, pending)
+- Test webhook notifications
+- Verify your integration without financial risk
+
+### Accessing the Demo Banking Simulator
+
+1. From your dashboard, navigate to **Developers** → **Testing Tools**
+2. Click on **Demo Banking Simulator** or **Test Environment**
+3. You'll be redirected to the simulator interface
+
+![Demo Banking Simulator](/images/demo-banking-simulator.png)
+
+
+## Next Steps
+
+Congratulations! You've completed the quickstart guide. Here's what to do next:
+
+<CardGroup cols={2}>
+  <Card title="Explore API Reference" icon="code-pull-request" href="/api-reference/introduction">
+    Review our comprehensive API documentation to understand all available endpoints and features.
+  </Card>
+  
+  <Card title="Read Payment Flows Guide" icon="forward-step" href="/guides/payments/payment-flows">
+    Learn about different payment flows and how to implement them in your application.
+  </Card>
+</CardGroup>
+
+<Check>
+  You're now ready to start building with Pooler! Begin by making your first test payment using the demo banking simulator.
+</Check>

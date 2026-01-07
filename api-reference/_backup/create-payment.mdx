@@ -1,0 +1,25 @@
+---
+title: 'Create Payment'
+openapi: 'POST /payments/initiate'
+---
+
+Initiate a new payment transaction. This endpoint creates a payment quote that must be confirmed using the [Confirm Payment](/api-reference/payments/confirm-payment) endpoint.
+
+## Overview
+
+This endpoint starts a payment transaction by creating a payment quote. The quote includes fees, exchange rates, and total amount to collect. After reviewing the quote, you must call the confirm endpoint to execute the payment.
+
+<Warning>
+  Payments require a two-step process: first initiate to get a quote, then complete to execute the payment. Quotes expire after 5 minutes.
+</Warning>
+
+## Payment Flow
+
+1. **Initiate Payment** - Call this endpoint with payment details to get a quote
+2. **Review Quote** - Check the fees, exchange rates, and total amount
+3. **Confirm Payment** - Use the `quote_id` and `reference` from the response to complete the payment
+
+<Tip>
+  Use the `Idempotency-Key` header to prevent duplicate payments if you need to retry the request.
+</Tip>
+

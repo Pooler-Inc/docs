@@ -1,0 +1,40 @@
+---
+title: 'Nigerian Name Enquiry'
+openapi: 'GET /utils/nigerian-name-enquiry'
+---
+
+Query the account name associated with a Nigerian bank account number. This uses the NIP (Nigerian Interbank Payment) system to verify account details.
+
+## Overview
+
+This endpoint allows you to verify Nigerian bank account details by querying the account name associated with an account number. This is useful for validating recipient information before sending payments.
+
+<Note>
+  This endpoint is specific to Nigerian bank accounts and uses the NIP system. The account number and bank code must be valid Nigerian banking details.
+</Note>
+
+## Query Parameters
+
+<ParamField query="account_number" type="string" required>
+  Nigerian bank account number to query
+</ParamField>
+
+<ParamField query="bankcode" type="string" required>
+  Bank code for the account's bank (e.g., "120001" for 9 Payment Service Bank)
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="object">
+  Account verification response containing:
+  
+  - `account_bank`: Bank name
+  - `account_bank_code`: Bank code
+  - `account_name`: Account holder name
+  - `account_number`: Account number (verified)
+</ResponseField>
+
+<Warning>
+  Always verify account names match before processing payments to prevent sending funds to incorrect recipients.
+</Warning>
+

@@ -1,0 +1,36 @@
+---
+title: 'Trigger Events'
+openapi: 'POST /webhooks/events/trigger/{id}'
+---
+
+Manually trigger a webhook event to be sent again. This is useful for testing webhook endpoints or retrying failed webhook deliveries.
+
+## Overview
+
+This endpoint allows you to manually retrigger a webhook event. This is particularly useful when:
+
+- Testing your webhook endpoint
+- Retrying a failed webhook delivery
+- Replaying an event for debugging purposes
+
+## Path Parameters
+
+<ParamField path="id" type="string" required>
+  Webhook event UUID to trigger
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="object">
+  Trigger response containing:
+  
+  - `event_id`: The event ID that was triggered
+  - `acknowledged`: Whether the event was acknowledged
+  - `attempts`: Number of delivery attempts
+  - `message`: Status message
+</ResponseField>
+
+<Note>
+  Triggering an event will increment the attempt counter and send the webhook to your configured endpoint again.
+</Note>
+

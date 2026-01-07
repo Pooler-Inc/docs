@@ -1,0 +1,95 @@
+---
+title: 'Create Recipient'
+openapi: 'POST /payments/recipients'
+---
+
+Create a new payment recipient. Recipients are bank accounts or payment destinations that you can send payments to.
+
+## Overview
+
+Recipients are saved payment destinations that you can reuse for multiple payments. Creating a recipient allows you to:
+
+- Store bank account details securely
+- Reuse payment destinations without re-entering details
+- Set payment limits per recipient
+- Add identification and verification information
+
+## Request Body
+
+<ParamField body="account_number" type="string" required>
+  Bank account number
+</ParamField>
+
+<ParamField body="account_name" type="string" required>
+  Account holder name
+</ParamField>
+
+<ParamField body="account_type" type="string" required>
+  Type of account holder: "individual" or "business"
+</ParamField>
+
+<ParamField body="account_currency" type="string" required>
+  Currency code (e.g., "NGN", "USD", "KES")
+</ParamField>
+
+<ParamField body="account_country_code" type="string">
+  Country code or country name
+</ParamField>
+
+<ParamField body="account_bank_name" type="string">
+  Bank name
+</ParamField>
+
+<ParamField body="account_bank_code" type="string">
+  Bank code or routing number
+</ParamField>
+
+<ParamField body="amount_limit" type="number">
+  Maximum amount limit for payments to this recipient
+</ParamField>
+
+<ParamField body="identification" type="object">
+  Identification information object:
+  
+  - `identification_type`: Type of ID (e.g., "passport", "national_id")
+  - `identification_number`: ID number
+  - `identification_image`: Base64 encoded image of ID
+</ParamField>
+
+<ParamField body="payment_details" type="object">
+  Additional payment details object:
+  
+  - `account_number`: Payment account number
+  - `bank_code`: Bank code
+  - `bank_name`: Bank name
+  - `routing_number`: Routing number
+  - `swift_code`: SWIFT code
+  - `payment_rails`: Payment rails identifier (e.g., "nip")
+</ParamField>
+
+## Headers
+
+<ParamField header="Idempotency-Key" type="string">
+  Optional idempotency key to prevent duplicate recipient creation
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="object">
+  Created recipient object including:
+  
+  - `id`: Recipient UUID (use this for payments)
+  - `merchant_id`: Your merchant ID
+  - `account_number`: Account number
+  - `account_name`: Account holder name
+  - `account_type`: Account type
+  - `account_currency`: Currency code
+  - `account_bank_name`: Bank name
+  - `account_bank_code`: Bank code
+  - `account_country_code`: Country code
+  - `limit`: Payment limit
+  - `is_internal_account`: Whether it's an internal Pooler account
+  - `created_at`: Creation timestamp
+  - `updated_at`: Last update timestamp
+</ResponseField>
+

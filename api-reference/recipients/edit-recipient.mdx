@@ -1,0 +1,69 @@
+---
+title: 'Edit Recipient'
+openapi: 'PUT /payments/recipients/{id}'
+---
+
+Update an existing payment recipient's information. This allows you to modify account details, limits, or identification information.
+
+## Overview
+
+Use this endpoint to update recipient information such as account details, payment limits, or identification documents.
+
+## Path Parameters
+
+<ParamField path="id" type="string" required>
+  Recipient UUID
+</ParamField>
+
+## Request Body
+
+<ParamField body="account_number" type="string">
+  Updated bank account number
+</ParamField>
+
+<ParamField body="account_name" type="string">
+  Updated account holder name
+</ParamField>
+
+<ParamField body="account_type" type="string">
+  Updated account type
+</ParamField>
+
+<ParamField body="account_currency" type="string">
+  Updated currency code
+</ParamField>
+
+<ParamField body="account_country_code" type="string">
+  Updated country code
+</ParamField>
+
+<ParamField body="account_bank_name" type="string">
+  Updated bank name
+</ParamField>
+
+<ParamField body="account_bank_code" type="string">
+  Updated bank code
+</ParamField>
+
+<ParamField body="amount_limit" type="number">
+  Updated payment limit
+</ParamField>
+
+<ParamField body="identification_type" type="string">
+  Updated identification type
+</ParamField>
+
+<ParamField body="identification_number" type="string">
+  Updated identification number
+</ParamField>
+
+<ParamField body="payment_details" type="object">
+  Updated payment details object
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="object">
+  Updated recipient object with all current information
+</ResponseField>
+

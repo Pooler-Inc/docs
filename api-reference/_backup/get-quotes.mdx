@@ -1,0 +1,31 @@
+---
+title: 'Get Quotes'
+openapi: 'GET /fx/quotes'
+---
+
+Retrieve foreign exchange quotes for currency conversions. This endpoint returns available FX quotes that can be used for currency conversion transactions.
+
+## Overview
+
+This endpoint provides foreign exchange quotes that are available for currency conversion. Quotes include exchange rates and fees for converting between different currencies.
+
+## Query Parameters
+
+<ParamField query="page" type="integer">
+  Page number for pagination
+</ParamField>
+
+<ParamField query="per_page" type="integer">
+  Number of items per page
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="array">
+  Array of FX quote objects. Each quote includes exchange rate information, fees, and validity period.
+</ResponseField>
+
+<Note>
+  FX quotes are time-sensitive and may expire. Always check the quote validity before using it for a transaction.
+</Note>
+

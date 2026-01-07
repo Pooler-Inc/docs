@@ -1,0 +1,210 @@
+---
+title: 'Go-Live Checklist'
+description: 'Complete checklist to prepare your Pooler integration for production'
+icon: circle-check
+---
+
+Before going live with Pooler, ensure you've completed all the necessary steps to ensure a smooth production launch. This checklist covers everything from account verification to testing and monitoring.
+
+## Pre-Launch Requirements
+
+### Account Verification
+
+<Steps>
+  <Step title="Complete Business Registration">
+    Provide all required business information in your dashboard:
+    - Business name and registration details
+    - Business address and contact information
+    - Tax identification numbers (where applicable)
+    - Business registration documents
+  </Step>
+  
+  <Step title="Verify Business Details">
+    Ensure all business information is accurate and matches your official registration documents.
+  </Step>
+  
+  <Step title="Submit Compliance Documents">
+    Upload required compliance documents:
+    - Business registration certificate
+    - Tax identification documents
+    - Proof of address
+    - Identity verification for authorized signatories
+  </Step>
+  
+  <Step title="Complete KYB Process">
+    Complete Know Your Customer (KYB) verification for your business and authorized users.
+  </Step>
+</Steps>
+
+### Technical Preparation
+
+<Steps>
+  <Step title="Test Integration Thoroughly">
+    Complete end-to-end testing in test mode:
+    - Test all payout payment flows
+    - Test recipient management
+    - Test webhook delivery
+    - Test error handling and edge cases
+  </Step>
+  
+  <Step title="Implement Error Handling">
+    Ensure your application handles:
+    - API errors gracefully
+    - Network timeouts
+    - Payment failures
+    - Webhook delivery failures
+    - Rate limiting
+  </Step>
+  
+  <Step title="Set Up Logging and Monitoring">
+    Implement logging for:
+    - All API requests and responses
+    - Payment status changes
+    - Webhook events
+    - Error conditions
+  </Step>
+  
+  <Step title="Configure Webhooks">
+    Set up webhook endpoints to receive real-time notifications:
+    - Payment status updates
+    - Virtual account transactions
+    - Error notifications
+    - Test webhook delivery in test mode
+  </Step>
+  
+  <Step title="Implement Idempotency">
+    Use idempotency keys for all payment and recipient creation requests to prevent duplicate transactions.
+  </Step>
+</Steps>
+
+### Security Checklist
+
+<Steps>
+  <Step title="Secure API Keys">
+    - Store API keys securely (use environment variables or secret management)
+    - Never commit API keys to version control
+    - Use different keys for test and production
+    - Rotate keys regularly
+    - Implement key rotation procedures
+  </Step>
+  
+  <Step title="Enable HTTPS">
+    Ensure all API calls are made over HTTPS (never HTTP).
+  </Step>
+  
+  <Step title="Implement Webhook Signature Verification">
+    Verify webhook signatures to ensure requests are from Pooler. See [Webhook Signature Security](/guides/webhooks/signature-security) for details.
+  </Step>
+  
+  <Step title="Review Access Controls">
+    Implement proper access controls:
+    - Limit who can access API keys
+    - Use least privilege principles
+    - Monitor API key usage
+  </Step>
+</Steps>
+
+### Financial Preparation
+
+<Steps>
+  <Step title="Understand Fee Structure">
+    Review and understand:
+    - Transaction fees
+    - Currency conversion rates
+    - Payment route costs
+    - See [Transaction Fees](/guides/payments/transaction-fees) for details
+  </Step>
+  
+  <Step title="Set Up Prefunded Float">
+    If required, set up prefunded float account:
+    - Understand float requirements
+    - Complete float setup process
+    - See [Prefunded Float](/guides/business/prefunded-float) for details
+  </Step>
+  
+  <Step title="Configure Payment Limits">
+    Set appropriate payment limits based on your business needs and risk profile.
+  </Step>
+  
+  <Step title="Plan for Reconciliation">
+    Set up processes for:
+    - Transaction reconciliation
+    - Balance monitoring
+    - Dispute handling
+  </Step>
+</Steps>
+
+## Go-Live Process
+
+<Steps>
+  <Step title="Request Live Mode Activation">
+    Contact support at tech@usepooler.com to request live mode activation. Include:
+    - Your business account ID
+    - Confirmation that all checklist items are complete
+    - Expected transaction volumes
+  </Step>
+  
+  <Step title="Review Account Status">
+    Verify in dashboard that:
+    - Account status shows "live" or "ready for live"
+    - All compliance documents are approved
+    - Payment limits are configured correctly
+  </Step>
+  
+  <Step title="Switch to Live API Keys">
+    Update your application to use live API keys:
+    - Replace test API keys with live keys
+    - Update base URL to production endpoint
+    - Test with a small transaction first
+  </Step>
+  
+  <Step title="Perform Smoke Tests">
+    Run a series of small test transactions:
+    - Create a test virtual account
+    - Send a small test payment
+    - Verify webhook delivery
+    - Check transaction status
+  </Step>
+</Steps>
+
+## Post-Launch Monitoring
+
+<Steps>
+  <Step title="Monitor Transaction Success Rate">
+    Track:
+    - Successful vs failed transactions
+    - Average processing times
+    - Error rates by type
+  </Step>
+  
+  <Step title="Monitor Account Balance">
+    Regularly check:
+    - Account balance levels
+    - Float requirements
+    - Pending transactions
+  </Step>
+  
+  <Step title="Set Up Alerts">
+    Configure alerts for:
+    - Low account balance
+    - High failure rates
+    - Webhook delivery failures
+    - Unusual transaction patterns
+  </Step>
+  
+  <Step title="Review Webhook Logs">
+    Monitor webhook delivery:
+    - Check delivery success rates
+    - Review failed deliveries
+    - Ensure all events are being processed
+  </Step>
+</Steps>
+
+<Tip>
+  Start with small transaction volumes and gradually increase as you gain confidence in your integration.
+</Tip>
+
+<Warning>
+  Always test thoroughly in test mode before going live. Live transactions are real and irreversible.
+</Warning>
+

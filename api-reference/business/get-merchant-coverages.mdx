@@ -1,0 +1,35 @@
+---
+title: 'Get Merchant Coverages'
+openapi: 'GET /business/coverages'
+---
+
+Retrieve a list of currency coverages available for your merchant account. This shows which currencies you can process payments in.
+
+## Overview
+
+This endpoint returns all currency coverages that have been configured for your merchant account. Each coverage indicates a currency that your account is enabled to process.
+
+## Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the request was successful
+</ResponseField>
+
+<ResponseField name="message" type="string">
+  Response message
+</ResponseField>
+
+<ResponseField name="stan" type="string">
+  System trace audit number (unique transaction identifier)
+</ResponseField>
+
+<ResponseField name="data" type="array">
+  Array of coverage objects, each containing:
+  
+  - `id`: Unique coverage identifier
+  - `currency_name`: Full name of the currency (e.g., "Botswanan Pula")
+  - `is_active`: Whether this coverage is currently active
+  - `created_at`: Timestamp when coverage was created
+  - `updated_at`: Timestamp when coverage was last updated
+</ResponseField>
+

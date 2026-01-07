@@ -1,0 +1,54 @@
+---
+title: 'List Virtual Accounts'
+openapi: 'GET /accounts/virtual-accounts'
+---
+
+Retrieve a paginated list of all virtual accounts associated with your account.
+
+## Overview
+
+This endpoint returns all virtual accounts you've created, allowing you to view their status, account numbers, and balances.
+
+## Query Parameters
+
+<ParamField query="page" type="integer">
+  Page number for pagination (default: 1)
+</ParamField>
+
+<ParamField query="per_page" type="integer">
+  Number of items per page (default: 10)
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="object">
+  Paginated response containing:
+  
+  - `total_pages`: Total number of pages
+  - `current_page`: Current page number
+  - `total_records`: Total number of virtual accounts
+  - `next_page`: URL for next page
+  - `previous_page`: URL for previous page
+  - `items`: Array of virtual account objects
+</ResponseField>
+
+<ResponseField name="data.items[]" type="object">
+  Each virtual account object includes:
+  
+  - `id`: Virtual account UUID
+  - `account_no`: Account number
+  - `account_name`: Account holder name
+  - `bank_name`: Bank name
+  - `currency_code`: Currency code
+  - `active`: Whether account is active
+  - `amount`: Current balance
+  - `first_name`: First name
+  - `last_name`: Last name
+  - `email`: Email address
+  - `mobile_number`: Phone number
+  - `bvn`: Bank Verification Number
+  - `metadata`: Additional metadata
+  - `created_at`: Creation timestamp
+  - `updated_at`: Last update timestamp
+</ResponseField>
+

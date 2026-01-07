@@ -1,0 +1,226 @@
+---
+title: 'Route Management'
+description: 'Understanding payment routes and how Pooler optimizes payment routing'
+icon: arrows-cross
+---
+
+Payment routes are the paths that payments take from your account to recipient accounts. Pooler automatically selects optimal routes, but understanding route management helps you optimize costs and processing times.
+
+## What are Payment Routes?
+
+Payment routes are the payment networks and channels used to transfer funds. Different routes have different characteristics:
+
+- **Processing Speed** - How fast payments are processed
+- **Cost** - Fees associated with the route
+- **Reliability** - Success rate of the route
+- **Coverage** - Countries and banks supported
+
+## Route Types
+
+### Local Routes
+
+Routes for payments within the same country:
+
+| Route Type | Speed | Cost | Coverage | Use Case |
+|------------|-------|------|----------|----------|
+| **NIP (Nigeria Instant Payment)** | Instant to minutes | Low | Nigerian banks | Local Nigerian transfers |
+| **Local Bank Transfers** | Minutes to hours | Low to medium | Local banks | Standard local transfers |
+| **Mobile Money** | Instant to minutes | Low | Mobile money networks | Mobile money transfers |
+
+### Cross-Border Routes
+
+Routes for international payments:
+
+| Route Type | Speed | Cost | Coverage | Use Case |
+|------------|-------|------|----------|----------|
+| **SWIFT** | 1-5 business days | Medium to high | Global | International wire transfers |
+| **Regional Networks** | Hours to days | Medium | Regional (e.g., SEPA, ACH) | Regional transfers |
+| **Corridor-Specific Routes** | Varies by corridor | Optimized for specific corridors | Specific country pairs | High-volume corridors |
+
+## Route Selection
+
+### Automatic Route Selection
+
+Pooler automatically selects the best route based on:
+
+
+**Factors Considered:**
+
+1. **Destination** - Recipient country and bank
+2. **Amount** - Payment amount (some routes have minimums/maximums)
+3. **Currency** - Source and destination currencies
+4. **Speed Requirements** - Processing time needs
+5. **Cost Optimization** - Balance between speed and cost
+6. **Route Availability** - Current route status and capacity
+
+### Route Selection Algorithm
+
+<Steps>
+  <Step title="Identify Available Routes">
+    Determine all routes that can handle the payment based on destination, currency, and amount.
+  </Step>
+  
+  <Step title="Filter by Requirements">
+    Filter routes based on:
+    - Speed requirements
+    - Cost constraints
+    - Route availability
+  </Step>
+  
+  <Step title="Score Routes">
+    Score each route based on:
+    - Cost (lower is better)
+    - Speed (faster is better)
+    - Reliability (higher success rate is better)
+  </Step>
+  
+  <Step title="Select Optimal Route">
+    Select the route with the best score for the payment.
+  </Step>
+</Steps>
+
+## Route Optimization
+
+### Cost Optimization
+
+Optimize routes for cost:
+
+- **Route Comparison** - Compare costs across available routes
+- **Bulk Routing** - Use cost-effective routes for bulk payments
+- **Time-Based Routing** - Use cheaper routes when speed isn't critical
+
+
+### Speed Optimization
+
+Optimize routes for speed:
+
+- **Priority Routes** - Use fastest routes for urgent payments
+- **Route Selection** - Prefer instant/same-day routes
+- **Time-Based Selection** - Consider processing times when selecting routes
+
+
+### Balanced Optimization
+
+Balance cost and speed:
+
+- **Tiered Routing** - Use fast routes for small amounts, cost-effective for large
+- **Business Rules** - Apply business-specific routing rules
+- **Dynamic Selection** - Adjust based on current conditions
+
+## Route Information
+
+### Getting Route Information
+
+Route information is included in payment quotes:
+
+```javascript
+const quote = await poolerClient.post('/payments/initiate', paymentData);
+const routeInfo = quote.data.data.route;
+
+console.log('Route:', routeInfo.name);
+console.log('Estimated Time:', routeInfo.estimated_time);
+console.log('Route Fee:', routeInfo.fee);
+```
+
+### Route Details
+
+Route information includes:
+
+| Field | Description |
+|-------|-------------|
+| **Route Name** | Identifier for the route |
+| **Estimated Time** | Expected processing time |
+| **Route Fee** | Fee for using this route |
+| **Route Type** | Local or cross-border |
+| **Currency Support** | Supported currencies |
+
+## Route Management Strategies
+
+### Strategy 1: Automatic Selection
+
+Let Pooler automatically select routes:
+
+| Aspect | Details |
+|--------|---------|
+| **Pros** | No configuration needed<br/>Always uses optimal route<br/>Adapts to changing conditions |
+| **Cons** | Less control over routing<br/>May not match specific business needs |
+| **When to Use** | Standard payment requirements<br/>Don't need route control<br/>Want simplicity |
+
+### Strategy 2: Route Preferences
+
+Specify route preferences when available:
+
+| Aspect | Details |
+|--------|---------|
+| **Pros** | Control over routing<br/>Optimize for specific needs<br/>Balance cost and speed |
+| **Cons** | Requires configuration<br/>May need updates over time |
+| **When to Use** | Specific routing requirements<br/>Cost or speed optimization needs<br/>Business-specific rules |
+
+### Strategy 3: Route Monitoring
+
+Monitor route performance and adjust:
+
+| Aspect | Details |
+|--------|---------|
+| **Pros** | Data-driven decisions<br/>Continuous optimization<br/>Identify issues early |
+| **Cons** | Requires monitoring setup<br/>Need analysis capabilities |
+| **When to Use** | High payment volumes<br/>Need optimization<br/>Want performance insights |
+
+
+## Route Performance
+
+### Monitoring Route Performance
+
+Track route performance metrics:
+
+| Metric | Description |
+|--------|-------------|
+| **Success Rate** | Percentage of successful payments |
+| **Average Processing Time** | Mean time to complete |
+| **Cost per Payment** | Average cost per payment |
+| **Error Rate** | Percentage of failed payments |
+
+### Route Analytics
+
+Analyze route data to optimize:
+
+| Analysis Type | Description |
+|---------------|-------------|
+| **Route Comparison** | Compare routes side-by-side |
+| **Trend Analysis** | Identify trends over time |
+| **Cost Analysis** | Understand cost patterns |
+| **Performance Trends** | Track performance changes |
+
+
+## Route Failures
+
+### Handling Route Failures
+
+When a route fails:
+
+1. **Automatic Retry** - Pooler may automatically retry with alternative route
+2. **Manual Retry** - You can manually retry the payment
+3. **Route Selection** - New route may be selected for retry
+4. **Notification** - You receive notification of route failure
+
+### Route Failure Reasons
+
+Common reasons for route failures:
+
+| Reason | Description |
+|--------|-------------|
+| **Route Unavailable** | Route temporarily unavailable |
+| **Bank Rejection** | Recipient bank rejected payment |
+| **Compliance Issues** | Compliance-related rejections |
+| **Network Issues** | Payment network problems |
+| **Invalid Details** | Incorrect recipient details |
+
+## Best Practices
+
+<Tip>
+  - Pooler's automatic route selection is optimized for most use cases.
+  - Track route performance to identify optimization opportunities.
+  - Balance cost and speed based on your needs.
+  - Implement retry logic for route failures.
+  - Reach out for route optimization for high-volume scenarios.
+</Tip>

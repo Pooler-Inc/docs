@@ -1,0 +1,85 @@
+---
+title: 'Recipient Management'
+description: 'Understanding payment recipients and how to manage them in Pooler'
+icon: user
+---
+
+Payment recipients are the individuals or businesses that receive payments through Pooler. This guide explains what recipients are, how they work, and how to manage them effectively.
+
+## What are Recipients?
+
+Recipients are payees - the people or businesses you send money to through Pooler. Before you can send a payment, you must create a recipient record with their payment account details. Once created, you can reuse recipient records for multiple payments.
+
+
+<img src="/images/recipient-overview-diagram.png" alt="Recipient Overview Diagram" />
+
+
+### Benefits of Recipient Management
+
+<CardGroup cols={2}>
+  <Card title="Reusability" icon="repeat">
+    Create once, use many times - save recipient details for future payments.
+  </Card>
+  
+  <Card title="Verification" icon="shield-check">
+    Recipients are verified to ensure account details are correct before payments.
+  </Card>
+  
+  <Card title="Compliance" icon="file-shield">
+    Store verified recipient information for compliance and audit purposes.
+  </Card>
+  
+  <Card title="Efficiency" icon="bolt">
+    Send payments faster by referencing recipient IDs instead of entering details each time.
+  </Card>
+  
+  <Card title="Error Prevention" icon="exclamation-triangle">
+    Verified recipients reduce payment errors and failed transactions.
+  </Card>
+  
+  <Card title="Tracking" icon="chart-line">
+    Track payment history per recipient for better analytics.
+  </Card>
+</CardGroup>
+
+## Recipient Creation Flow
+
+<Steps>
+  <Step title="Collect Recipient Details">
+    Gather all required recipient information from your customer or records.
+  </Step>
+  
+  <Step title="Create Recipient via API">
+    Call the Create Recipient endpoint with recipient details.
+  </Step>
+  
+  <Step title="Recipient Created">
+    Recipient is created and assigned a unique recipient ID.
+  </Step>
+  
+  <Step title="Use Recipient for Payments">
+    Use the recipient ID when initiating payments to this recipient.
+  </Step>
+</Steps>
+
+## Recipient Management
+
+### Updating Recipients
+
+You can update recipient information if details change:
+
+- Account number changes
+- Account name updates
+- Contact information updates
+- Bank details changes
+
+## Best Practices
+
+<Tip>
+  **Verify Before Payment**:
+  - Always verify recipient status before sending payments to avoid failures.
+  - Save recipient IDs in your database for easy reference.
+  - Keep recipient information up to date, especially if account details change.
+  - Store additional information in recipient metadata for your records.
+  - Have a process for handling failed verifications and updating incorrect details.
+</Tip>

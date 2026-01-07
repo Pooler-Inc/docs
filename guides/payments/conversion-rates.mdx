@@ -1,0 +1,183 @@
+---
+title: 'Conversion Rates'
+description: 'Understanding currency conversion rates and how they work in Pooler'
+icon: wave-pulse
+---
+
+When sending payments in different currencies, Pooler handles currency conversion using real-time or quoted exchange rates. This guide explains how conversion rates work and how to manage them effectively.
+
+## What are Conversion Rates?
+
+Conversion rates determine how much of one currency you get for another currency. When you send a payment in a different currency, Pooler converts your source currency to the destination currency at the applicable rate.
+
+## How Conversion Works
+
+### Conversion Process
+
+<Steps>
+  <Step title="Payment Initiation">
+    You initiate a payment specifying:
+    - Source amount (in your currency)
+    - Destination currency (recipient's currency)
+  </Step>
+  
+  <Step title="Rate Quotation">
+    Pooler provides:
+    - Exchange rate for conversion
+    - Destination amount (converted amount)
+    - Conversion fee (if applicable)
+  </Step>
+  
+  <Step title="Rate Lock">
+    Rate may be locked for a period (typically 5 minutes for quotes)
+  </Step>
+  
+  <Step title="Conversion Execution">
+    When payment is confirmed, conversion is executed at the quoted rate.
+  </Step>
+</Steps>
+
+
+## Rate Components
+
+### Exchange Rate Breakdown
+
+| Component | Description |
+|-----------|-------------|
+| **Base Rate** | Market exchange rate<br/>Based on interbank rates<br/>Updated regularly |
+| **Spread** | Margin added to base rate<br/>Covers market risk<br/>Varies by currency pair |
+| **Conversion Fee** | Fixed or percentage fee<br/>Applied to conversion<br/>Separate from spread |
+
+
+## Rate Management
+
+### Rate Monitoring
+
+Monitor rates to optimize conversions:
+
+| Activity | Description |
+|----------|-------------|
+| **Track Rate Trends** | Monitor rate changes over time |
+| **Compare Rates** | Compare rates across different times |
+| **Identify Patterns** | Identify favorable rate patterns |
+| **Rate Alerts** | Set alerts for target rates |
+
+### Rate Optimization Strategies
+
+| Strategy | Description |
+|----------|-------------|
+| **Strategy 1: Timing Optimization** | Time conversions for favorable rates<br/>Monitor rate trends<br/>Convert during favorable periods<br/>Avoid volatile periods |
+| **Strategy 2: Bulk Conversion** | Convert larger amounts to get better rates<br/>Larger amounts may get better rates<br/>Reduce per-transaction fees<br/>Optimize conversion costs |
+| **Strategy 3: Rate Locking** | Lock rates when favorable<br/>Get quotes for target amounts<br/>Lock rates in quotes<br/>Confirm payments within lock period |
+
+## Rate Transparency
+
+### Understanding Rate Quotes
+
+Payment quotes include rate information:
+
+```json
+{
+  "quote_id": "quote_123",
+  "source_amount": 1000,
+  "source_currency": "USD",
+  "destination_amount": 1491000,
+  "destination_currency": "KES",
+  "exchange_rate": 1491,
+  "conversion_fee": 1.5,
+  "total_fees": 15,
+  "expires_at": "2024-01-15T10:35:00Z"
+}
+```
+
+### Rate Disclosure
+
+All rates are disclosed in:
+
+| Source | Description |
+|--------|-------------|
+| **Payment Quotes** | Rate included in payment quotes |
+| **API Responses** | Rate details in API responses |
+| **Dashboard** | Rate information in dashboard |
+| **Transaction Records** | Rate used in transaction history |
+
+## Rate Validity
+
+### Quote Expiration
+
+Payment quotes expire after a period (typically 5 minutes):
+
+| Aspect | Description |
+|--------|-------------|
+| **Expiration Time** | Shown in quote response |
+| **Rate Lock** | Rate locked until expiration |
+| **Re-quote** | New quote needed after expiration |
+
+### Handling Expired Quotes
+
+```javascript
+try {
+  await poolerClient.post('/payments/complete', {
+    quote_id: expiredQuoteId,
+    reference: 'PAY-001'
+  });
+} catch (error) {
+  if (error.response?.data?.message?.includes('expired')) {
+    // Get new quote
+    const newQuote = await poolerClient.post('/payments/initiate', paymentData);
+    // Confirm with new quote
+    await poolerClient.post('/payments/complete', {
+      quote_id: newQuote.data.data.quote_id,
+      reference: 'PAY-001'
+    });
+  }
+}
+```
+
+## Supported Currency Pairs
+
+### Major Pairs
+
+Pooler supports conversion between major currencies:
+
+| Currency Pair | Description |
+|---------------|-------------|
+| **USD ↔ NGN** | US Dollar to Nigerian Naira |
+| **USD ↔ KES** | US Dollar to Kenyan Shilling |
+| **USD ↔ GHS** | US Dollar to Ghanaian Cedi |
+| **USD ↔ ZAR** | US Dollar to South African Rand |
+| **And more** | Check [Supported Corridors API](/api-reference/utilities/get-supported-corridors) for full list |
+
+<Info>
+  Contact support to request support for additional currency pairs.
+</Info>
+
+## Rate Accuracy
+
+### Rate Sources
+
+Pooler uses:
+
+| Source | Description |
+|--------|-------------|
+| **Interbank Rates** | Market-based rates |
+| **Real-Time Data** | Updated regularly |
+| **Transparent Pricing** | All rates disclosed |
+
+### Rate Guarantees
+
+| Guarantee | Description |
+|-----------|-------------|
+| **Quote Rates** | Guaranteed for quote validity period |
+| **Real-Time Rates** | Best available at time of conversion |
+| **No Hidden Fees** | All fees disclosed upfront |
+
+## Best Practices
+
+<Tip>
+  - Always review exchange rates in payment quotes before confirming.
+  - Monitor rate trends to identify favorable conversion times.
+  - Lock rates in quotes when rates are favorable.
+  - Implement logic to handle expired quotes and get new ones.
+  - Understand all conversion fees, not just exchange rates.
+</Tip>

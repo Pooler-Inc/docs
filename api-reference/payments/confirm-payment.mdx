@@ -1,0 +1,47 @@
+---
+title: 'Confirm Payment'
+openapi: 'POST /payments/complete'
+---
+
+Complete a payment transaction that was previously initiated. This endpoint executes the payment after you've reviewed the quote from the initiate endpoint.
+
+## Overview
+
+After initiating a payment and receiving a quote, use this endpoint to confirm and execute the payment. The payment will be processed immediately upon confirmation.
+
+<Warning>
+  Ensure you have sufficient balance before confirming a payment. Failed payments due to insufficient balance cannot be automatically retried.
+</Warning>
+
+## Request Body
+
+<ParamField body="quote_id" type="string" required>
+  Payment quote ID from the initiate payment response
+</ParamField>
+
+<ParamField body="reference" type="string" required>
+  Payment reference from the initiate payment response
+</ParamField>
+
+## Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the payment was completed successfully
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Payment transaction details including status, amount, currency, and recipient information
+</ResponseField>
+
+## Error Responses
+
+If the payment fails (e.g., insufficient balance), the response will include:
+
+<ResponseField name="success" type="boolean">
+  Will be `false` for failed payments
+</ResponseField>
+
+<ResponseField name="data" type="string">
+  Error message describing the failure reason
+</ResponseField>
+

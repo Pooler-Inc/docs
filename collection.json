@@ -1,0 +1,1618 @@
+{
+    "info": {
+        "_postman_id": "8e797f2d-4bbc-458c-9cb6-e7809b8dfbd1",
+        "name": "Pooler Developer API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "19873942",
+        "_collection_link": "https://dark-shadow-883284.postman.co/workspace/Pooler-Business~078d007f-d2f5-4bd8-8aa3-2f765e41ea43/collection/19873942-8e797f2d-4bbc-458c-9cb6-e7809b8dfbd1?action=share&source=collection_link&creator=19873942"
+    },
+    "item": [
+        {
+            "name": "Business",
+            "item": [
+                {
+                    "name": "Get Account Details",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{api_url}}/business-details",
+                            "host": [
+                                "{{api_url}}"
+                            ],
+                            "path": [
+                                "business-details"
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Get Account Details",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{api_url}}/business-details",
+                                    "host": [
+                                        "{{api_url}}"
+                                    ],
+                                    "path": [
+                                        "business-details"
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": null,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 01 Jan 2026 09:28:28 GMT"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "949"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"success\": true,\n    \"message\": \"Request completed successfully\",\n    \"stan\": \"8b447288-69a5-4ac5-831b-fd7e97fccea0\",\n    \"data\": {\n        \"id\": \"ff52bce6-99f0-44c4-aa6a-962f385f5074\",\n        \"business_name\": \"Laura Johnson\",\n        \"business_address\": \"Nesciunt velit ut \",\n        \"business_city\": \"Aut deserunt perfere\",\n        \"business_state\": \"Excepturi quis proid\",\n        \"business_country\": \"american samoa\",\n        \"business_zip\": \"\",\n        \"business_phone\": \"17366914289\",\n        \"business_email\": \"sam+8@usepooler.com\",\n        \"status\": \"test\",\n        \"is_developer_access_enabled\": true,\n        \"is_live_mode_enabled\": false,\n        \"is_test_mode_enabled\": true,\n        \"can_go_live\": false,\n        \"current_mode\": \"test\",\n        \"wire_transfer_payment_details\": {\n            \"account_number\": \"7441991037\",\n            \"bank_routing_number\": \"\",\n            \"bank_beneficiary_name\": \"\",\n            \"bank_beneficiary_address\": \"\",\n            \"currency_code\": \"\",\n            \"bank_name\": \"\",\n            \"bank_address\": \"\",\n            \"payment_rails\": null,\n            \"country_code\": \"\"\n        },\n        \"account_balance\": \"0\",\n        \"account_balance_in_float\": 0,\n        \"token_payment_details\": {\n            \"token_address\": \"\",\n            \"network\": [\n                \"\"\n            ],\n            \"stable_coins\": \"\"\n        }\n    }\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Get Merchant Coverages",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{api_url}}/business/coverages",
+                            "host": [
+                                "{{api_url}}"
+                            ],
+                            "path": [
+                                "business",
+                                "coverages"
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Get Merchant Coverages",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{api_url}}/business/coverages",
+                                    "host": [
+                                        "{{api_url}}"
+                                    ],
+                                    "path": [
+                                        "business",
+                                        "coverages"
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": null,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 01 Jan 2026 09:27:54 GMT"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "282"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"success\": true,\n    \"message\": \"Request completed successfully\",\n    \"stan\": \"c1ee8ac7-858e-44aa-8650-be875d571e35\",\n    \"data\": [\n        {\n            \"id\": \"147b080a-09a4-4277-aa10-2dafb27a376b\",\n            \"currency_name\": \"Botswanan Pula\",\n            \"is_active\": true,\n            \"created_at\": \"2026-01-01T12:27:07Z\",\n            \"updated_at\": \"2026-01-01T12:27:07Z\"\n        }\n    ]\n}"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Payments",
+            "item": [
+                {
+                    "name": "Create Payment",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Idempotency-Key",
+                                "value": "",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"amount\": 20,\n  \"currency\": \"NGN\",\n  \"description\": \"Payment for services\",\n  \"reference\": \"TXN-REF-12345\",\n  \"recipient_id\": \"74e15a92-4f94-460b-a0be-cdeb07bdac67\",\n  \"transaction_type\": \"inter\",\n  \"transaction_category\": \"transfer\",\n  \"transaction_tags\": \"payment,service\",\n  \"transaction_notes\": \"Monthly subscription payment\",\n  \"channel\": \"bank\",\n  \"sub_type\": \"transfer\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{api_url}}/payments/initiate",
+                            "host": [
+                                "{{api_url}}"
+                            ],
+                            "path": [
+                                "payments",
+                                "initiate"
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Create Payment",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Idempotency-Key",
+                                        "value": "",
+                                        "type": "text"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n  \"amount\": 20,\n  \"currency\": \"NGN\",\n  \"description\": \"Payment for services\",\n  \"reference\": \"TXN-REF-12345\",\n  \"recipient_id\": \"74e15a92-4f94-460b-a0be-cdeb07bdac67\",\n  \"transaction_type\": \"inter\",\n  \"transaction_category\": \"transfer\",\n  \"transaction_tags\": \"payment,service\",\n  \"transaction_notes\": \"Monthly subscription payment\",\n  \"channel\": \"bank\",\n  \"sub_type\": \"transfer\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{api_url}}/payments/initiate",
+                                    "host": [
+                                        "{{api_url}}"
+                                    ],
+                                    "path": [
+                                        "payments",
+                                        "initiate"
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": null,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Process_id",
+                                    "value": "18ba1d1e-cf8a-43cf-b645-44d6760a57ca"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 01 Jan 2026 10:13:54 GMT"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "1758"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"success\": true,\n    \"message\": \"Request completed successfully\",\n    \"stan\": \"e32a8b02-1ab9-4110-b0f5-4d2cee2880a4\",\n    \"data\": {\n        \"reference\": \"PLR-55b8081c\",\n        \"status\": \"pending\",\n        \"amount\": \"20\",\n        \"currency\": \"NGN\",\n        \"description\": \"Payment for services\",\n        \"account_balance\": \"0\",\n        \"payment_quote\": {\n            \"id\": \"af1c6541-599d-46b1-b111-d31ae3b668b7\",\n            \"from_currency\": \"NGN\",\n            \"to_currency\": \"NGN\",\n            \"merchant_id\": \"ff52bce6-99f0-44c4-aa6a-962f385f5074\",\n            \"sub_type\": \"\",\n            \"sender_account_id\": \"aef327f2-cb7a-4e18-b77d-cbe14c2fa083\",\n            \"reference\": \"PLR-55b8081c\",\n            \"is_internal_account\": false,\n            \"recipient_id\": \"74e15a92-4f94-460b-a0be-cdeb07bdac67\",\n            \"status\": \"pending\",\n            \"quote\": \"20\",\n            \"amount\": \"20\",\n            \"fee\": \"30\",\n            \"total_to_collect\": \"50\",\n            \"quote_date\": \"2026-01-01T13:13:54.690955Z\",\n            \"expires_at\": \"2026-01-01T13:18:54.690928Z\",\n            \"created_at\": \"2026-01-01T13:13:54.691202+03:00\",\n            \"updated_at\": \"2026-01-01T13:13:54.691202+03:00\"\n        },\n        \"recipient\": {\n            \"id\": \"74e15a92-4f94-460b-a0be-cdeb07bdac67\",\n            \"merchant_id\": \"ff52bce6-99f0-44c4-aa6a-962f385f5074\",\n            \"account_number\": \"1234567890\",\n            \"account_name\": \"John Doe\",\n            \"account_type\": \"individual\",\n            \"is_internal_account\": false,\n            \"account_currency\": \"NGN\",\n            \"account_bank_name\": \"Pooler Bank\",\n            \"account_bank_code\": \"POOLER001\",\n            \"account_country_code\": \"Nigeria\",\n            \"account_country\": \"Nigeria\",\n            \"identification\": {\n                \"identification_type\": \"passportt\",\n                \"identification_image\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQImWNgYGAAAAAEAAGjChXjAAAAAElFTkSuQmCC\",\n                \"identification_number\": \"24353535253\",\n                \"identification_country\": \"\"\n            },\n            \"limit\": \"90\",\n            \"payment_details\": {\n                \"msisdn\": \"\",\n                \"bank_code\": \"\",\n                \"bank_name\": \"\",\n                \"sort_code\": \"\",\n                \"swift_code\": \"\",\n                \"account_name\": \"\",\n                \"payment_rails\": \"nip\",\n                \"account_number\": \"\",\n                \"routing_number\": \"\"\n            },\n            \"created_at\": \"2026-01-01T13:11:49.430344Z\",\n            \"updated_at\": \"2026-01-01T13:11:49.430344Z\"\n        }\n    }\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Confirm Payment",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"quote_id\": \"af1c6541-599d-46b1-b111-d31ae3b668b7\",\n    \"reference\": \"55b8081c\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{api_url}}/payments/complete",
+                            "host": [
+                                "{{api_url}}"
+                            ],
+                            "path": [
+                                "payments",
+                                "complete"
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Confirm Payment",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"quote_id\": \"af1c6541-599d-46b1-b111-d31ae3b668b7\",\n    \"reference\": \"55b8081c\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{api_url}}/payments/complete",
+                                    "host": [
+                                        "{{api_url}}"
+                                    ],
+                                    "path": [
+                                        "payments",
+                                        "complete"
+                                    ]
+                                }
+                            },
+                            "status": "Internal Server Error",
+                            "code": 500,
+                            "_postman_previewlanguage": null,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Process_id",
+                                    "value": "93c70d76-5646-4479-b7f6-19d9ae9e09bd"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 01 Jan 2026 10:20:20 GMT"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "134"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"success\": false,\n    \"message\": \"\",\n    \"stan\": \"983c859c-64ad-4d36-b445-b6e710496f32\",\n    \"data\": \"failed to process transfer: insufficient balance\"\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Reject Payment",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"reason\": \"\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{api_url}}/payments/reject",
+                            "host": [
+                                "{{api_url}}"
+                            ],
+                            "path": [
+                                "payments",
+                                "reject"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Query Payment Status",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{api_url}}/payments/tsq/:reference",
+                            "host": [
+                                "{{api_url}}"
+                            ],
+                            "path": [
+                                "payments",
+                                "tsq",
+                                ":reference"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "reference",
+                                    "value": ""
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "List Payments",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{api_url}}/payments?page=1&per_page=20",
+                            "host": [
+                                "{{api_url}}"
+                            ],
+                            "path": [
+                                "payments"
+                            ],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "per_page",
+                                    "value": "20"
+                                }
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "List Payments",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{api_url}}/payments?page=1&per_page=20",
+                                    "host": [
+                                        "{{api_url}}"
+                                    ],
+                                    "path": [
+                                        "payments"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "page",
+                                            "value": "1"
+                                        },
+                                        {
+                                            "key": "per_page",
+                                            "value": "20"
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": null,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 31 Dec 2025 10:55:50 GMT"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "704"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"success\": true,\n    \"message\": \"Request completed successfully\",\n    \"stan\": \"af07c539-6165-472f-9f19-959c9920f528\",\n    \"data\": {\n        \"total_pages\": 1,\n        \"current_page\": 1,\n        \"total_records\": 1,\n        \"next_page\": \"\",\n        \"previous_page\": \"\",\n        \"items\": [\n            {\n                \"id\": \"316dff0c-e2f6-4196-b8ce-cbab1a7c429d\",\n                \"reference\": \"WDL-95320fee\",\n                \"amount\": \"310000000000\",\n                \"currency\": \"USD\",\n                \"description\": \"Withdrawal of 0 \",\n                \"type\": \"debit\",\n                \"sub_type\": \"\",\n                \"category\": \"withdrawal_demo\",\n                \"sub_category\": \"withdrawal_demo\",\n                \"transaction_date\": \"2025-12-14T08:58:27.231334Z\",\n                \"tags\": \"cbs_demo\",\n                \"is_reversed\": false,\n                \"is_completed\": true,\n                \"channel\": \"nip\",\n                \"notes\": \"\",\n                \"metadata\": null,\n                \"status\": \"completed\",\n                \"created_at\": \"2025-12-14T08:58:27.231374Z\",\n                \"updated_at\": \"2025-12-14T08:58:27.231374Z\"\n            }\n        ]\n    }\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Retrieve Payment",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{api_url}}/payments/316dff0c-e2f6-4196-b8ce-cbab1a7c429d",
+                            "host": [
+                                "{{api_url}}"
+                            ],
+                            "path": [
+                                "payments",
+                                "316dff0c-e2f6-4196-b8ce-cbab1a7c429d"
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Retrieve Payment",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{api_url}}/payments/316dff0c-e2f6-4196-b8ce-cbab1a7c429d",
+                                    "host": [
+                                        "{{api_url}}"
+                                    ],
+                                    "path": [
+                                        "payments",
+                                        "316dff0c-e2f6-4196-b8ce-cbab1a7c429d"
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": null,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Wed, 31 Dec 2025 11:01:28 GMT"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "607"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"success\": true,\n    \"message\": \"Request completed successfully\",\n    \"stan\": \"8c2e7768-374d-41bf-a540-6aac2c4d6c3f\",\n    \"data\": {\n        \"id\": \"316dff0c-e2f6-4196-b8ce-cbab1a7c429d\",\n        \"reference\": \"WDL-95320fee\",\n        \"amount\": \"310000000000\",\n        \"currency\": \"USD\",\n        \"description\": \"Withdrawal of 0 \",\n        \"type\": \"debit\",\n        \"sub_type\": \"\",\n        \"category\": \"withdrawal_demo\",\n        \"sub_category\": \"withdrawal_demo\",\n        \"transaction_date\": \"2025-12-14T08:58:27.231334Z\",\n        \"tags\": \"cbs_demo\",\n        \"is_reversed\": false,\n        \"is_completed\": true,\n        \"channel\": \"nip\",\n        \"notes\": \"\",\n        \"metadata\": null,\n        \"status\": \"completed\",\n        \"created_at\": \"2025-12-14T08:58:27.231374Z\",\n        \"updated_at\": \"2025-12-14T08:58:27.231374Z\"\n    }\n}"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Accounts",
+            "item": [
+                {
+                    "name": "Create Virtual Account",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"account_type\": \"individual\",\n    \"account_name\": \"Anita Bakery Limited\",\n    \"first_name\": \"Anita\",\n    \"last_name\": \"Achu\",\n    \"display_name\": \"Anita Bakery Limited\",\n    \"email\": \"anitatom20@gmail.com\",\n    \"bvn\": \"23448368291\",\n    \"mobile_number\": \"08177333170\",\n    \"metadata\": {\n        \"business_reg_number\": \"A45678\",\n        \"country\": \"Japan\",\n        \"use_case\": \"collect anything\",\n        \"reference\": \"234234521\"\n    }\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{api_url}}/accounts/virtual-accounts",
+                            "host": [
+                                "{{api_url}}"
+                            ],
+                            "path": [
+                                "accounts",
+                                "virtual-accounts"
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Create Virtual Account",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"account_type\": \"individual\",\n    \"account_name\": \"Anita Bakery Limited\",\n    \"first_name\": \"Anita\",\n    \"last_name\": \"Achu\",\n    \"display_name\": \"Anita Bakery Limited\",\n    \"email\": \"anitatom20@gmail.com\",\n    \"bvn\": \"23448368291\",\n    \"mobile_number\": \"08177333170\",\n    \"metadata\": {\n        \"business_reg_number\": \"A45678\",\n        \"country\": \"Japan\",\n        \"use_case\": \"collect anything\",\n        \"reference\": \"234234521\"\n    }\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{api_url}}/accounts/virtual-accounts",
+                                    "host": [
+                                        "{{api_url}}"
+                                    ],
+                                    "path": [
+                                        "accounts",
+                                        "virtual-accounts"
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": null,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Process_id",
+                                    "value": "6436eb37-e6d4-42df-a911-09377bc22705"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 01 Jan 2026 08:39:06 GMT"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "325"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"success\": true,\n    \"message\": \"Request completed successfully\",\n    \"stan\": \"44719289-95ec-4acc-a2dd-2a6637a0a7b6\",\n    \"data\": {\n        \"id\": \"05e84976-65df-45a7-804e-467ad634e32c\",\n        \"currency\": \"NGN\",\n        \"account_number\": \"0458936197\",\n        \"account_name\": \"Anita Bakery Limited\",\n        \"bank_name\": \"Bank Name\",\n        \"is_active\": true,\n        \"created_at\": \"2026-01-01T11:39:06+03:00\"\n    }\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "List Virtual Accounts",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{api_url}}/accounts/virtual-accounts?page=1&per_page=10",
+                            "host": [
+                                "{{api_url}}"
+                            ],
+                            "path": [
+                                "accounts",
+                                "virtual-accounts"
+                            ],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "per_page",
+                                    "value": "10"
+                                }
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "List Virtual Accounts",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{api_url}}/accounts/virtual-accounts?page=1&per_page=10",
+                                    "host": [
+                                        "{{api_url}}"
+                                    ],
+                                    "path": [
+                                        "accounts",
+                                        "virtual-accounts"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "page",
+                                            "value": "1"
+                                        },
+                                        {
+                                            "key": "per_page",
+                                            "value": "10"
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": null,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 01 Jan 2026 08:39:13 GMT"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "1528"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"success\": true,\n    \"message\": \"Request completed successfully\",\n    \"stan\": \"d8073523-9d48-4ea1-8d2d-816f9bdabf13\",\n    \"data\": {\n        \"total_pages\": 1,\n        \"current_page\": 1,\n        \"total_records\": 2,\n        \"next_page\": \"\",\n        \"previous_page\": \"\",\n        \"items\": [\n            {\n                \"id\": \"05e84976-65df-45a7-804e-467ad634e32c\",\n                \"bank_name\": \"Bank Name\",\n                \"account_no\": \"0458936197\",\n                \"account_name\": \"Anita Bakery Limited\",\n                \"first_name\": \"Anita\",\n                \"last_name\": \"Achu\",\n                \"mobile_number\": \"08177333170\",\n                \"reference\": \"\",\n                \"currency_code\": \"NGN\",\n                \"bvn\": \"23448368291\",\n                \"email\": \"anitatom20@gmail.com\",\n                \"client_type\": \"individual\",\n                \"metadata\": {\n                    \"country\": \"Japan\",\n                    \"use_case\": \"collect anything\",\n                    \"reference\": \"234234521\",\n                    \"business_reg_number\": \"A45678\"\n                },\n                \"display_name\": \"Anita Bakery Limited\",\n                \"business_name\": \"\",\n                \"active\": true,\n                \"account_status\": \"\",\n                \"expiry_date\": \"0001-01-01T00:00:00Z\",\n                \"amount\": \"0\",\n                \"created_at\": \"2026-01-01T11:39:06.798522Z\",\n                \"updated_at\": \"2026-01-01T11:39:06.798522Z\"\n            },\n            {\n                \"id\": \"754163a9-1cdd-4dd4-9d86-8165c1fd265b\",\n                \"bank_name\": \"Bank Name\",\n                \"account_no\": \"8824635904\",\n                \"account_name\": \"Anita Bakery Limited\",\n                \"first_name\": \"Anita\",\n                \"last_name\": \"Achu\",\n                \"mobile_number\": \"08177333170\",\n                \"reference\": \"\",\n                \"currency_code\": \"\",\n                \"bvn\": \"23448368291\",\n                \"email\": \"anitatom20@gmail.com\",\n                \"client_type\": \"individual\",\n                \"metadata\": {\n                    \"country\": \"Japan\",\n                    \"use_case\": \"collect anything\",\n                    \"reference\": \"234234521\",\n                    \"business_reg_number\": \"A45678\"\n                },\n                \"display_name\": \"Anita Bakery Limited\",\n                \"business_name\": \"\",\n                \"active\": true,\n                \"account_status\": \"\",\n                \"expiry_date\": \"0001-01-01T00:00:00Z\",\n                \"amount\": \"0\",\n                \"created_at\": \"2026-01-01T11:37:07.97353Z\",\n                \"updated_at\": \"2026-01-01T11:37:07.97353Z\"\n            }\n        ]\n    }\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Retrieve Virtual Account",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{api_url}}/accounts/virtual-accounts/:id",
+                            "host": [
+                                "{{api_url}}"
+                            ],
+                            "path": [
+                                "accounts",
+                                "virtual-accounts",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "05e84976-65df-45a7-804e-467ad634e32c"
+                                }
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Retrieve Virtual Account",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{api_url}}/accounts/virtual-accounts/:id",
+                                    "host": [
+                                        "{{api_url}}"
+                                    ],
+                                    "path": [
+                                        "accounts",
+                                        "virtual-accounts",
+                                        ":id"
+                                    ],
+                                    "variable": [
+                                        {
+                                            "key": "id",
+                                            "value": "05e84976-65df-45a7-804e-467ad634e32c"
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": null,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 01 Jan 2026 08:39:33 GMT"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "774"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"success\": true,\n    \"message\": \"Request completed successfully\",\n    \"stan\": \"cb2c4264-bb1e-4406-ad36-b4259ca97252\",\n    \"data\": {\n        \"id\": \"05e84976-65df-45a7-804e-467ad634e32c\",\n        \"bank_name\": \"Bank Name\",\n        \"account_no\": \"0458936197\",\n        \"account_name\": \"Anita Bakery Limited\",\n        \"first_name\": \"Anita\",\n        \"last_name\": \"Achu\",\n        \"mobile_number\": \"08177333170\",\n        \"reference\": \"\",\n        \"currency_code\": \"NGN\",\n        \"bvn\": \"23448368291\",\n        \"email\": \"anitatom20@gmail.com\",\n        \"client_type\": \"individual\",\n        \"metadata\": {\n            \"country\": \"Japan\",\n            \"use_case\": \"collect anything\",\n            \"reference\": \"234234521\",\n            \"business_reg_number\": \"A45678\"\n        },\n        \"display_name\": \"Anita Bakery Limited\",\n        \"business_name\": \"\",\n        \"active\": true,\n        \"account_status\": \"\",\n        \"expiry_date\": \"0001-01-01T00:00:00Z\",\n        \"amount\": \"0\",\n        \"created_at\": \"2026-01-01T11:39:06.798522Z\",\n        \"updated_at\": \"2026-01-01T11:39:06.798522Z\"\n    }\n}"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Webhook API",
+            "item": [
+                {
+                    "name": "List Events",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{api_url}}/webhooks/events?page&per_page",
+                            "host": [
+                                "{{api_url}}"
+                            ],
+                            "path": [
+                                "webhooks",
+                                "events"
+                            ],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": null
+                                },
+                                {
+                                    "key": "per_page",
+                                    "value": null
+                                }
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "List Events",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{api_url}}/webhooks/events?page&per_page",
+                                    "host": [
+                                        "{{api_url}}"
+                                    ],
+                                    "path": [
+                                        "webhooks",
+                                        "events"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "page",
+                                            "value": null
+                                        },
+                                        {
+                                            "key": "per_page",
+                                            "value": null
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": null,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 01 Jan 2026 08:23:55 GMT"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "705"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"success\": true,\n    \"message\": \"Request completed successfully\",\n    \"stan\": \"58a2c159-8168-4fd7-be92-0dff7ca9dced\",\n    \"data\": {\n        \"total_pages\": 1,\n        \"current_page\": 1,\n        \"total_records\": 1,\n        \"next_page\": \"\",\n        \"previous_page\": \"\",\n        \"items\": [\n            {\n                \"id\": \"587ddde5-5ffd-4cdb-b177-e4660572b4cf\",\n                \"type\": \"chargeback\",\n                \"event\": \"transfer.fulfilled\",\n                \"data\": {\n                    \"data\": {\n                        \"id\": \"ef4e7ccc-ba05-48d3-945a-3c198c26a434\",\n                        \"amount\": \"35100\",\n                        \"status\": \"failed\",\n                        \"currency\": \"NGN\"\n                    },\n                    \"event\": \"transfer.fulfilled\",\n                    \"timestamp\": \"2025-12-08 11:34:03.355094+03\",\n                    \"merchant_id\": \"11111111-1111-1111-1111-111111111111\"\n                },\n                \"attempts\": 0,\n                \"acknowledged\": false,\n                \"acknowledged_at\": \"0001-01-01T00:00:00Z\",\n                \"created_at\": \"2025-12-08T11:34:03.355094Z\",\n                \"updated_at\": \"2025-12-08T11:34:03.355094Z\"\n            }\n        ]\n    }\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Trigger Events",
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                            "raw": "{{api_url}}/webhooks/events/trigger/:id",
+                            "host": [
+                                "{{api_url}}"
+                            ],
+                            "path": [
+                                "webhooks",
+                                "events",
+                                "trigger",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "587ddde5-5ffd-4cdb-b177-e4660572b4cf"
+                                }
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Trigger Events",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{api_url}}/webhooks/events/trigger/:id",
+                                    "host": [
+                                        "{{api_url}}"
+                                    ],
+                                    "path": [
+                                        "webhooks",
+                                        "events",
+                                        "trigger",
+                                        ":id"
+                                    ],
+                                    "variable": [
+                                        {
+                                            "key": "id",
+                                            "value": "587ddde5-5ffd-4cdb-b177-e4660572b4cf"
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "Accepted",
+                            "code": 202,
+                            "_postman_previewlanguage": null,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Process_id",
+                                    "value": "eeb6bc0a-af88-4c1f-bdb1-aafae3c559bd"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 01 Jan 2026 08:30:11 GMT"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "247"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"success\": true,\n    \"message\": \"Request completed successfully\",\n    \"stan\": \"4c0ed38a-c10c-4a96-aec4-5fbd8683dcfc\",\n    \"data\": {\n        \"acknowledged\": false,\n        \"attempts\": 0,\n        \"event_id\": \"587ddde5-5ffd-4cdb-b177-e4660572b4cf\",\n        \"message\": \"Webhook event triggered successfully\"\n    }\n}"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "FX API",
+            "item": [
+                {
+                    "name": "Get Quotes",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{api_url}}/fx/quotes?page&per_page",
+                            "host": [
+                                "{{api_url}}"
+                            ],
+                            "path": [
+                                "fx",
+                                "quotes"
+                            ],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": null
+                                },
+                                {
+                                    "key": "per_page",
+                                    "value": null
+                                }
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Get Quotes",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{api_url}}/fx/quotes?page&per_page",
+                                    "host": [
+                                        "{{api_url}}"
+                                    ],
+                                    "path": [
+                                        "fx",
+                                        "quotes"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "page",
+                                            "value": null
+                                        },
+                                        {
+                                            "key": "per_page",
+                                            "value": null
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": null,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 01 Jan 2026 08:20:23 GMT"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "115"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"success\": true,\n    \"message\": \"Request completed successfully\",\n    \"stan\": \"04c9767b-f5e3-4bb9-ba62-c58e3419ee09\",\n    \"data\": []\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Get Rates",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{api_url}}/fx/rates",
+                            "host": [
+                                "{{api_url}}"
+                            ],
+                            "path": [
+                                "fx",
+                                "rates"
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Get Rates",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{api_url}}/fx/rates",
+                                    "host": [
+                                        "{{api_url}}"
+                                    ],
+                                    "path": [
+                                        "fx",
+                                        "rates"
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": null,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 01 Jan 2026 08:21:01 GMT"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "1313"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"success\": true,\n    \"message\": \"Request completed successfully\",\n    \"stan\": \"8a0de342-bd59-4783-8c98-bbc69bc20fac\",\n    \"data\": [\n        {\n            \"currency\": \"USD\",\n            \"processing_fee\": \"0\",\n            \"rate_in_usd\": \"1\",\n            \"updated_at\": \"2025-12-13T07:38:36.397572Z\"\n        },\n        {\n            \"currency\": \"NGN\",\n            \"processing_fee\": \"0.01\",\n            \"rate_in_usd\": \"0.000691\",\n            \"updated_at\": \"2025-12-13T07:38:36.397572Z\"\n        },\n        {\n            \"currency\": \"KES\",\n            \"processing_fee\": \"0.01\",\n            \"rate_in_usd\": \"0.007727\",\n            \"updated_at\": \"2025-12-13T07:38:36.397572Z\"\n        },\n        {\n            \"currency\": \"ZAR\",\n            \"processing_fee\": \"0.01\",\n            \"rate_in_usd\": \"0.055\",\n            \"updated_at\": \"2025-12-13T07:38:36.397572Z\"\n        },\n        {\n            \"currency\": \"EGP\",\n            \"processing_fee\": \"0.01\",\n            \"rate_in_usd\": \"0.0324\",\n            \"updated_at\": \"2025-12-13T07:38:36.397572Z\"\n        },\n        {\n            \"currency\": \"GHS\",\n            \"processing_fee\": \"0.01\",\n            \"rate_in_usd\": \"0.0647\",\n            \"updated_at\": \"2025-12-13T07:38:36.397572Z\"\n        },\n        {\n            \"currency\": \"TZS\",\n            \"processing_fee\": \"0.01\",\n            \"rate_in_usd\": \"0.000426\",\n            \"updated_at\": \"2025-12-13T07:38:36.397572Z\"\n        },\n        {\n            \"currency\": \"UGX\",\n            \"processing_fee\": \"0.01\",\n            \"rate_in_usd\": \"0.00027\",\n            \"updated_at\": \"2025-12-13T07:38:36.397572Z\"\n        },\n        {\n            \"currency\": \"XOF\",\n            \"processing_fee\": \"0.01\",\n            \"rate_in_usd\": \"0.001667\",\n            \"updated_at\": \"2025-12-13T07:38:36.397572Z\"\n        },\n        {\n            \"currency\": \"XAF\",\n            \"processing_fee\": \"0.01\",\n            \"rate_in_usd\": \"0.001667\",\n            \"updated_at\": \"2025-12-13T07:38:36.397572Z\"\n        },\n        {\n            \"currency\": \"ZMW\",\n            \"processing_fee\": \"0.01\",\n            \"rate_in_usd\": \"0.04\",\n            \"updated_at\": \"2025-12-13T07:38:36.397572Z\"\n        }\n    ]\n}"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Recipient",
+            "item": [
+                {
+                    "name": "Create Recipient",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Idempotency-Key",
+                                "value": "dsasds",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"account_number\": \"1234567890\",\n    \"account_name\": \"John Doe\",\n    \"account_type\": \"individual\",\n    \"account_currency\": \"NGN\",\n    \"account_country_code\": \"Nigeria\",\n    \"account_bank_name\": \"Pooler Bank\",\n    \"account_bank_code\": \"POOLER001\",\n    \"amount_limit\": 90,\n    \"identification\": {\n        \"identification_type\": \"passportt\",\n        \"identification_number\": \"24353535253\",\n        \"identification_image\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQImWNgYGAAAAAEAAGjChXjAAAAAElFTkSuQmCC\"\n    },\n    \"payment_details\": {\n        \"account_number\": \"\",\n        \"bank_code\": \"\",\n        \"bank_name\": \"\",\n        \"routing_number\": \"\",\n        \"swift_code\": \"\",\n        \"account_name\": \"\",\n        \"sort_code\": \"\",\n        \"msisdn\": \"\",\n        \"payment_rails\": \"nip\"\n    }\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{api_url}}/payments/recipients",
+                            "host": [
+                                "{{api_url}}"
+                            ],
+                            "path": [
+                                "payments",
+                                "recipients"
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Create Recipient",
+                            "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                    {
+                                        "key": "Idempotency-Key",
+                                        "value": "dsasds",
+                                        "type": "text"
+                                    }
+                                ],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"account_number\": \"1234567890\",\n    \"account_name\": \"John Doe\",\n    \"account_type\": \"individual\",\n    \"account_currency\": \"NGN\",\n    \"account_country_code\": \"Nigeria\",\n    \"account_bank_name\": \"Pooler Bank\",\n    \"account_bank_code\": \"POOLER001\",\n    \"amount_limit\": 90,\n    \"identification\": {\n        \"identification_type\": \"passportt\",\n        \"identification_number\": \"24353535253\",\n        \"identification_image\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQImWNgYGAAAAAEAAGjChXjAAAAAElFTkSuQmCC\"\n    },\n    \"payment_details\": {\n        \"account_number\": \"\",\n        \"bank_code\": \"\",\n        \"bank_name\": \"\",\n        \"routing_number\": \"\",\n        \"swift_code\": \"\",\n        \"account_name\": \"\",\n        \"sort_code\": \"\",\n        \"msisdn\": \"\",\n        \"payment_rails\": \"nip\"\n    }\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{api_url}}/payments/recipients",
+                                    "host": [
+                                        "{{api_url}}"
+                                    ],
+                                    "path": [
+                                        "payments",
+                                        "recipients"
+                                    ]
+                                }
+                            },
+                            "status": "Created",
+                            "code": 201,
+                            "_postman_previewlanguage": null,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Process_id",
+                                    "value": "6cc619f2-43c3-49e5-bd5e-a1578269430b"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 01 Jan 2026 10:11:49 GMT"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "629"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"success\": true,\n    \"message\": \"Request completed successfully\",\n    \"stan\": \"183ee67a-44ff-42c4-83d7-21b1038b3e3b\",\n    \"data\": {\n        \"id\": \"74e15a92-4f94-460b-a0be-cdeb07bdac67\",\n        \"merchant_id\": \"ff52bce6-99f0-44c4-aa6a-962f385f5074\",\n        \"account_number\": \"1234567890\",\n        \"account_name\": \"John Doe\",\n        \"account_type\": \"individual\",\n        \"is_internal_account\": false,\n        \"account_currency\": \"NGN\",\n        \"account_bank_name\": \"Pooler Bank\",\n        \"account_bank_code\": \"POOLER001\",\n        \"account_country_code\": \"Nigeria\",\n        \"account_country\": \"Nigeria\",\n        \"identification\": null,\n        \"limit\": \"90\",\n        \"payment_details\": null,\n        \"created_at\": \"2026-01-01T13:11:49.430344+03:00\",\n        \"updated_at\": \"2026-01-01T13:11:49.430344+03:00\"\n    }\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Edit Recipient",
+                    "request": {
+                        "method": "PUT",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"account_number\": \"1234567890\",\n    \"account_name\": \"John Doe\",\n    \"account_type\": \"individual\",\n    \"account_currency\": \"NGN\",\n    \"account_country_code\": \"Nigeria\",\n    \"account_bank_name\": \"Pooler Bank\",\n    \"account_bank_code\": \"POOLER001\",\n    \"amount_limit\": 90,\n    \"identification_type\": \"\",\n    \"identification_number\": \"\",\n    \"payment_details\": {\n        \"account_number\": \"9090989775\",\n        \"bank_code\": \"9098\",\n        \"bank_name\": \"Zenith Bank\",\n        \"routing_number\": \"433535\",\n        \"swift_code\": \"\",\n        \"account_name\": \"\",\n        \"sort_code\": \"\",\n        \"msisdn\": \"\",\n        \"payment_rails\": \"nip\"\n    }\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{api_url}}/payments/recipients/:id",
+                            "host": [
+                                "{{api_url}}"
+                            ],
+                            "path": [
+                                "payments",
+                                "recipients",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "8a42ebf5-6b39-4bd7-a385-f1256ec89e0c"
+                                }
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Edit Recipient",
+                            "originalRequest": {
+                                "method": "PUT",
+                                "header": [],
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"account_number\": \"1234567890\",\n    \"account_name\": \"John Doe\",\n    \"account_type\": \"individual\",\n    \"account_currency\": \"NGN\",\n    \"account_country_code\": \"Nigeria\",\n    \"account_bank_name\": \"Pooler Bank\",\n    \"account_bank_code\": \"POOLER001\",\n    \"amount_limit\": 90,\n    \"identification_type\": \"\",\n    \"identification_number\": \"\",\n    \"payment_details\": {\n        \"account_number\": \"9090989775\",\n        \"bank_code\": \"9098\",\n        \"bank_name\": \"Zenith Bank\",\n        \"routing_number\": \"433535\",\n        \"swift_code\": \"\",\n        \"account_name\": \"\",\n        \"sort_code\": \"\",\n        \"msisdn\": \"\",\n        \"payment_rails\": \"nip\"\n    }\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "url": {
+                                    "raw": "{{api_url}}/payments/recipients/:id",
+                                    "host": [
+                                        "{{api_url}}"
+                                    ],
+                                    "path": [
+                                        "payments",
+                                        "recipients",
+                                        ":id"
+                                    ],
+                                    "variable": [
+                                        {
+                                            "key": "id",
+                                            "value": "8a42ebf5-6b39-4bd7-a385-f1256ec89e0c"
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": null,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Process_id",
+                                    "value": "e3adeea8-0665-4dbe-97fc-e207d16d51e6"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 01 Jan 2026 07:48:59 GMT"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "1035"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"success\": true,\n    \"message\": \"Request completed successfully\",\n    \"stan\": \"006b6058-7f21-45ae-99ce-55271412c9c8\",\n    \"data\": {\n        \"id\": \"8a42ebf5-6b39-4bd7-a385-f1256ec89e0c\",\n        \"merchant_id\": \"b8610f46-ed94-45b6-94ea-25f0374dc02f\",\n        \"account_number\": \"1234567890\",\n        \"account_name\": \"John Doe\",\n        \"account_type\": \"individual\",\n        \"is_internal_account\": false,\n        \"account_currency\": \"NGN\",\n        \"account_bank_name\": \"Pooler Bank\",\n        \"account_bank_code\": \"POOLER001\",\n        \"account_country_code\": \"Nigeria\",\n        \"account_country\": \"\",\n        \"identification\": {\n            \"identification_type\": \"passportt\",\n            \"identification_image\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQImWNgYGAAAAAEAAGjChXjAAAAAElFTkSuQmCC\",\n            \"identification_number\": \"24353535253\",\n            \"identification_country\": \"\"\n        },\n        \"limit\": \"90\",\n        \"payment_details\": {\n            \"account_number\": \"9090989775\",\n            \"bank_code\": \"9098\",\n            \"bank_name\": \"Zenith Bank\",\n            \"routing_number\": \"433535\",\n            \"swift_code\": \"\",\n            \"account_name\": \"\",\n            \"sort_code\": \"\",\n            \"msisdn\": \"\",\n            \"payment_rails\": \"nip\"\n        },\n        \"created_at\": \"2026-01-01T10:45:21.770882Z\",\n        \"updated_at\": \"2026-01-01T10:48:59.815605+03:00\"\n    }\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "List Recipients",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{api_url}}/payments/recipients?page=1&per_page=10",
+                            "host": [
+                                "{{api_url}}"
+                            ],
+                            "path": [
+                                "payments",
+                                "recipients"
+                            ],
+                            "query": [
+                                {
+                                    "key": "page",
+                                    "value": "1"
+                                },
+                                {
+                                    "key": "per_page",
+                                    "value": "10"
+                                },
+                                {
+                                    "key": "account_type",
+                                    "value": null,
+                                    "description": "individual | business",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "country",
+                                    "value": null,
+                                    "description": "nigeria",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "currency",
+                                    "value": null,
+                                    "description": "NGN",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "account_name",
+                                    "value": null,
+                                    "description": "samuel",
+                                    "disabled": true
+                                },
+                                {
+                                    "key": "account_number",
+                                    "value": null,
+                                    "description": "00909",
+                                    "disabled": true
+                                }
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "List Recipients",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{api_url}}/payments/recipients?page=1&per_page=10",
+                                    "host": [
+                                        "{{api_url}}"
+                                    ],
+                                    "path": [
+                                        "payments",
+                                        "recipients"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "page",
+                                            "value": "1"
+                                        },
+                                        {
+                                            "key": "per_page",
+                                            "value": "10"
+                                        },
+                                        {
+                                            "key": "account_type",
+                                            "value": null,
+                                            "description": "individual | business",
+                                            "disabled": true
+                                        },
+                                        {
+                                            "key": "country",
+                                            "value": null,
+                                            "description": "nigeria",
+                                            "disabled": true
+                                        },
+                                        {
+                                            "key": "currency",
+                                            "value": null,
+                                            "description": "NGN",
+                                            "disabled": true
+                                        },
+                                        {
+                                            "key": "account_name",
+                                            "value": null,
+                                            "description": "samuel",
+                                            "disabled": true
+                                        },
+                                        {
+                                            "key": "account_number",
+                                            "value": null,
+                                            "description": "00909",
+                                            "disabled": true
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": null,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 01 Jan 2026 07:57:19 GMT"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "1127"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"success\": true,\n    \"message\": \"Request completed successfully\",\n    \"stan\": \"c7432da2-512f-4d3f-970e-de41638be2f4\",\n    \"data\": {\n        \"total_pages\": 1,\n        \"current_page\": 1,\n        \"total_records\": 1,\n        \"next_page\": \"\",\n        \"previous_page\": \"\",\n        \"items\": [\n            {\n                \"id\": \"8a42ebf5-6b39-4bd7-a385-f1256ec89e0c\",\n                \"merchant_id\": \"b8610f46-ed94-45b6-94ea-25f0374dc02f\",\n                \"account_number\": \"1234567890\",\n                \"account_name\": \"John Doe\",\n                \"account_type\": \"individual\",\n                \"is_internal_account\": false,\n                \"account_currency\": \"NGN\",\n                \"account_bank_name\": \"Pooler Bank\",\n                \"account_bank_code\": \"POOLER001\",\n                \"account_country_code\": \"Nigeria\",\n                \"account_country\": \"\",\n                \"identification\": {\n                    \"identification_type\": \"passportt\",\n                    \"identification_image\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQImWNgYGAAAAAEAAGjChXjAAAAAElFTkSuQmCC\",\n                    \"identification_number\": \"24353535253\",\n                    \"identification_country\": \"\"\n                },\n                \"limit\": \"90\",\n                \"payment_details\": {\n                    \"msisdn\": \"\",\n                    \"bank_code\": \"9098\",\n                    \"bank_name\": \"Zenith Bank\",\n                    \"sort_code\": \"\",\n                    \"swift_code\": \"\",\n                    \"account_name\": \"\",\n                    \"payment_rails\": \"nip\",\n                    \"account_number\": \"9090989775\",\n                    \"routing_number\": \"433535\"\n                },\n                \"created_at\": \"2026-01-01T10:45:21.770882Z\",\n                \"updated_at\": \"2026-01-01T10:48:59.815605Z\"\n            }\n        ]\n    }\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Retrieve Recipient",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{api_url}}/payments/recipients/:id",
+                            "host": [
+                                "{{api_url}}"
+                            ],
+                            "path": [
+                                "payments",
+                                "recipients",
+                                ":id"
+                            ],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "8a42ebf5-6b39-4bd7-a385-f1256ec89e0c"
+                                }
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Retrieve Recipient",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{api_url}}/payments/recipients/:id",
+                                    "host": [
+                                        "{{api_url}}"
+                                    ],
+                                    "path": [
+                                        "payments",
+                                        "recipients",
+                                        ":id"
+                                    ],
+                                    "variable": [
+                                        {
+                                            "key": "id",
+                                            "value": "8a42ebf5-6b39-4bd7-a385-f1256ec89e0c"
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": null,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 01 Jan 2026 07:49:40 GMT"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "1030"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"success\": true,\n    \"message\": \"Request completed successfully\",\n    \"stan\": \"33fdde74-2bfb-4754-beef-68e38719b527\",\n    \"data\": {\n        \"id\": \"8a42ebf5-6b39-4bd7-a385-f1256ec89e0c\",\n        \"merchant_id\": \"b8610f46-ed94-45b6-94ea-25f0374dc02f\",\n        \"account_number\": \"1234567890\",\n        \"account_name\": \"John Doe\",\n        \"account_type\": \"individual\",\n        \"is_internal_account\": false,\n        \"account_currency\": \"NGN\",\n        \"account_bank_name\": \"Pooler Bank\",\n        \"account_bank_code\": \"POOLER001\",\n        \"account_country_code\": \"Nigeria\",\n        \"account_country\": \"\",\n        \"identification\": {\n            \"identification_type\": \"passportt\",\n            \"identification_image\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVQImWNgYGAAAAAEAAGjChXjAAAAAElFTkSuQmCC\",\n            \"identification_number\": \"24353535253\",\n            \"identification_country\": \"\"\n        },\n        \"limit\": \"90\",\n        \"payment_details\": {\n            \"msisdn\": \"\",\n            \"bank_code\": \"9098\",\n            \"bank_name\": \"Zenith Bank\",\n            \"sort_code\": \"\",\n            \"swift_code\": \"\",\n            \"account_name\": \"\",\n            \"payment_rails\": \"nip\",\n            \"account_number\": \"9090989775\",\n            \"routing_number\": \"433535\"\n        },\n        \"created_at\": \"2026-01-01T10:45:21.770882Z\",\n        \"updated_at\": \"2026-01-01T10:48:59.815605Z\"\n    }\n}"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Utility API",
+            "item": [
+                {
+                    "name": "Nigerian Name Enquiry",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{api_url}}/utils/nigerian-name-enquiry?account_number=6767676767&bankcode=120001",
+                            "host": [
+                                "{{api_url}}"
+                            ],
+                            "path": [
+                                "utils",
+                                "nigerian-name-enquiry"
+                            ],
+                            "query": [
+                                {
+                                    "key": "account_number",
+                                    "value": "6767676767"
+                                },
+                                {
+                                    "key": "bankcode",
+                                    "value": "120001"
+                                }
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Nigerian Name Enquiry",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{api_url}}/utils/nigerian-name-enquiry?account_number=6767676767&bankcode=120001",
+                                    "host": [
+                                        "{{api_url}}"
+                                    ],
+                                    "path": [
+                                        "utils",
+                                        "nigerian-name-enquiry"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "account_number",
+                                            "value": "6767676767"
+                                        },
+                                        {
+                                            "key": "bankcode",
+                                            "value": "120001"
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": null,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 01 Jan 2026 09:29:13 GMT"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "243"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"success\": true,\n    \"message\": \"Request completed successfully\",\n    \"stan\": \"d8ea139c-f4ed-4610-9ba8-4888796b9efc\",\n    \"data\": {\n        \"account_bank\": \"9 PAYMENT SERVICE BANK\",\n        \"account_bank_code\": \"120001\",\n        \"account_name\": \"John Patrick\",\n        \"account_number\": \"6767676767\"\n    }\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Get Supported Corridors",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{api_url}}/utils/country-coverage",
+                            "host": [
+                                "{{api_url}}"
+                            ],
+                            "path": [
+                                "utils",
+                                "country-coverage"
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Get Supported Corridors",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{api_url}}/utils/country-coverage",
+                                    "host": [
+                                        "{{api_url}}"
+                                    ],
+                                    "path": [
+                                        "utils",
+                                        "country-coverage"
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": null,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 01 Jan 2026 08:11:38 GMT"
+                                },
+                                {
+                                    "key": "Content-Length",
+                                    "value": "360"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"success\": true,\n    \"message\": \"Request completed successfully\",\n    \"stan\": \"c6815815-0c98-4402-8f8f-554ef0791c0e\",\n    \"data\": [\n        {\n            \"country_iso_code\": \"GH\",\n            \"supported_currency\": \"GHS\",\n            \"service_coverage\": \"payouts\"\n        },\n        {\n            \"country_iso_code\": \"KE\",\n            \"supported_currency\": \"KES\",\n            \"service_coverage\": \"payouts\"\n        },\n        {\n            \"country_iso_code\": \"NG\",\n            \"supported_currency\": \"NGN\",\n            \"service_coverage\": \"payouts\"\n        }\n    ]\n}"
+                        }
+                    ]
+                },
+                {
+                    "name": "Global Institution List",
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{api_url}}/utils/global-institution-list",
+                            "host": [
+                                "{{api_url}}"
+                            ],
+                            "path": [
+                                "utils",
+                                "global-institution-list"
+                            ],
+                            "query": [
+                                {
+                                    "key": "country",
+                                    "value": "ghana",
+                                    "disabled": true
+                                }
+                            ]
+                        }
+                    },
+                    "response": [
+                        {
+                            "name": "Global Institution List",
+                            "originalRequest": {
+                                "method": "GET",
+                                "header": [],
+                                "url": {
+                                    "raw": "{{api_url}}/utils/global-institution-list",
+                                    "host": [
+                                        "{{api_url}}"
+                                    ],
+                                    "path": [
+                                        "utils",
+                                        "global-institution-list"
+                                    ],
+                                    "query": [
+                                        {
+                                            "key": "country",
+                                            "value": "ghana",
+                                            "disabled": true
+                                        }
+                                    ]
+                                }
+                            },
+                            "status": "OK",
+                            "code": 200,
+                            "_postman_previewlanguage": null,
+                            "header": [
+                                {
+                                    "key": "Content-Type",
+                                    "value": "application/json; charset=utf-8"
+                                },
+                                {
+                                    "key": "Date",
+                                    "value": "Thu, 01 Jan 2026 08:01:35 GMT"
+                                },
+                                {
+                                    "key": "Transfer-Encoding",
+                                    "value": "chunked"
+                                }
+                            ],
+                            "cookie": [],
+                            "body": "{\n    \"success\": true,\n    \"message\": \"Request completed successfully\",\n    \"stan\": \"f10ef58a-bc82-4a58-88dd-0f4df5684aeb\",\n    \"data\": [\n        {\n            \"institution_name\": \"9 PAYMENT SERVICE BANK\",\n            \"institution_code\": \"120001\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"AB MICROFINANCE BANK\",\n            \"institution_code\": \"090270\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"ABBEY MORTGAGE BANK\",\n            \"institution_code\": \"070010\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"ABOVE ONLY MICROFINANCE BANK\",\n            \"institution_code\": \"090260\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"ABU MICROFINANCE BANK\",\n            \"institution_code\": \"090197\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"ACCESS BANK NIGERIA LTD\",\n            \"institution_code\": \"044\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"AccessMobile\",\n            \"institution_code\": \"100013\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"AccessYello & Beta\",\n            \"institution_code\": \"100052\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"ACCION MICROFINANCE BANK\",\n            \"institution_code\": \"090134\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"ADDOSSER MICROFINANCE BANK\",\n            \"institution_code\": \"090160\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Adeyemi College Staff  Microfinance Bank\",\n            \"institution_code\": \"090268\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"AFEKHAFE MICROFINANCE BANK\",\n            \"institution_code\": \"090292\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"AG MORTGAGE BANK PLC\",\n            \"institution_code\": \"100028\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"AKU MICROFINANCE BANK\",\n            \"institution_code\": \"090531\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"AL-BARAKAH MICROFINANCE BANK\",\n            \"institution_code\": \"090133\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Al-Hayat Microfinance Bank\",\n            \"institution_code\": \"090277\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"ALEKUN MICROFINANCE BANK\",\n            \"institution_code\": \"090259\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"ALERT MICROFINANCE BANK\",\n            \"institution_code\": \"090297\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Allworkers Microfinance Bank\",\n            \"institution_code\": \"090131\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Alpha Kapital Microfinance Bank\",\n            \"institution_code\": \"090169\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"AMJU UNIQUE MICROFINANCE BANK\",\n            \"institution_code\": \"090180\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"AMML MFB\",\n            \"institution_code\": \"090116\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Apeks Microfinance Bank\",\n            \"institution_code\": \"090143\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"APPLE MICROFINANCE BANK\",\n            \"institution_code\": \"090376\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"ARISE MICROFINANCE BANK\",\n            \"institution_code\": \"090282\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"ASO SAVINGS AND LOANS\",\n            \"institution_code\": \"401\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"ASSETMATRIX MICROFINANCE BANK\",\n            \"institution_code\": \"090287\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Astrapolaris Microfinance Bank\",\n            \"institution_code\": \"090172\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Auchi Microfinance Bank\",\n            \"institution_code\": \"090264\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"BAINES CREDIT MICROFINANCE BANK\",\n            \"institution_code\": \"090188\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"BALOGUN GAMBARI MICROFINANCE BANK\",\n            \"institution_code\": \"090326\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"BAOBAB MICROFINANCE BANK\",\n            \"institution_code\": \"090136\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"BC Kash Microfinance Bank\",\n            \"institution_code\": \"090127\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"BIPC MICROFINANCE BANK\",\n            \"institution_code\": \"090336\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Boctrust Microfinance Bank\",\n            \"institution_code\": \"090117\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"BOSAK MICROFINANCE BANK\",\n            \"institution_code\": \"090176\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"BOWEN MICROFINANCE BANK\",\n            \"institution_code\": \"090148\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"BRENT MORTGAGE BANK\",\n            \"institution_code\": \"070015\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"BRIDGEWAY MICROFINANCE BANK\",\n            \"institution_code\": \"090393\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"BRIGHTWAY MICROFINANCE BANK\",\n            \"institution_code\": \"090308\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"CASHCONNECT MFB\",\n            \"institution_code\": \"090360\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"CELLULANT\",\n            \"institution_code\": \"317\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"CEMCS MICROFINANCE BANK\",\n            \"institution_code\": \"090154\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"CENTRAL BANK OF NIGERIA\",\n            \"institution_code\": \"001\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"ChamsMobile\",\n            \"institution_code\": \"100015\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Chikum Microfinance Bank\",\n            \"institution_code\": \"090141\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"CIT MICROFINANCE BANK\",\n            \"institution_code\": \"090144\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"CONSUMER MICROFINANCE BANK\",\n            \"institution_code\": \"090130\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"CONTEC GLOBAL INFOTECH LIMITED (NOWNOW)\",\n            \"institution_code\": \"100032\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"CORESTEP MICROFINANCE BANK\",\n            \"institution_code\": \"090365\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"CORONATION MERCHANT BANK\",\n            \"institution_code\": \"559\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Covenant \",\n            \"institution_code\": \"551\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"CREDIT AFRIQUE MICROFINANCE BANK\",\n            \"institution_code\": \"090159\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"DAVODANI MICROFINANCE BANK\",\n            \"institution_code\": \"090391\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"DAYLIGHT MICROFINANCE BANK \",\n            \"institution_code\": \"090167\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"DOT MICROFINANCE BANK LTD\",\n            \"institution_code\": \"090470\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"e-Barcs Microfinance Bank\",\n            \"institution_code\": \"090156\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"EAGLE FLIGHT MICROFINANCE BANK\",\n            \"institution_code\": \"090294\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Eartholeum\",\n            \"institution_code\": \"100021\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"ECOBANK NIGERIA PLC\",\n            \"institution_code\": \"050\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"EcoMobile\",\n            \"institution_code\": \"307\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"EDFIN MICROFINANCE BANK\",\n            \"institution_code\": \"090310\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"EKONDO MICROFINANCE BANK \",\n            \"institution_code\": \"562\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"EMERALDS MICROFINANCE BANK\",\n            \"institution_code\": \"090273\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"EMPIRE TRUST BANK\",\n            \"institution_code\": \"090114\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Enterprise Bank\",\n            \"institution_code\": \"000019\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"ESAN MICROFINANCE BANK\",\n            \"institution_code\": \"090189\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Eso-E Microfinance Bank\",\n            \"institution_code\": \"090166\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"eTranzact\",\n            \"institution_code\": \"306\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"EVANGEL MICROFINANCE BANK\",\n            \"institution_code\": \"090304\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"EVERGREEN MICROFINANCE BANK\",\n            \"institution_code\": \"090332\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"EYOWO\",\n            \"institution_code\": \"090328\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"FAST MICROFINANCE BANK\",\n            \"institution_code\": \"090179\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"FBNQuest Merchant Bank Limited\",\n            \"institution_code\": \"060002\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"FCMB EASY ACCOUNT\",\n            \"institution_code\": \"100031\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"FCT MICROFINANCE BANK\",\n            \"institution_code\": \"090290\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"FEDERAL UNIVERSITY DUTSE MICROFINANCE BANK\",\n            \"institution_code\": \"090318\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"FET\",\n            \"institution_code\": \"314\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"FFS MICROFINANCE BANK\",\n            \"institution_code\": \"090153\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"FIDELITY BANK PLC\",\n            \"institution_code\": \"070\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Fidelity Mobile\",\n            \"institution_code\": \"100019\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"FidFund MFB\",\n            \"institution_code\": \"090126\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"FINATRUST MICROFINANCE BANK\",\n            \"institution_code\": \"608\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"FINCA MICROFINANCE BANK\",\n            \"institution_code\": \"090400\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"FIRMUS MICROFINANCE BANK\",\n            \"institution_code\": \"090366\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"FIRST BANK OF NIGERIA PLC\",\n            \"institution_code\": \"011\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"FIRST CITY MONUMENT BANK\",\n            \"institution_code\": \"214\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"First Generation Mortgage Bank\",\n            \"institution_code\": \"070014\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"FIRST OPTION MICROFINANCE BANK\",\n            \"institution_code\": \"090285\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"FIRST ROYAL MICROFINANCE BANK\",\n            \"institution_code\": \"090164\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"FIRST TRUST MORTGAGE BANK PLC\",\n            \"institution_code\": \"413\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"FIRSTMONIE WALLET\",\n            \"institution_code\": \"309\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Fortis Microfinance Bank\",\n            \"institution_code\": \"070002\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"FortisMobile\",\n            \"institution_code\": \"100016\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"FSDH MERCHANT BANK LIMIT\",\n            \"institution_code\": \"501\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Fullrange Microfinance Bank\",\n            \"institution_code\": \"090145\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Futo Microfinance Bank\",\n            \"institution_code\": \"090158\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Gashua Microfinance Bank\",\n            \"institution_code\": \"090168\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"GATEWAY MORTGAGE BANK\",\n            \"institution_code\": \"070009\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"GLOBUS BANK\",\n            \"institution_code\": \"103\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"GLORY MICROFINANCE BANK\",\n            \"institution_code\": \"090278\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"GMB MICROFINANCE BANK\",\n            \"institution_code\": \"090408\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"GOMONEY\",\n            \"institution_code\": \"100022\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"GOWANS MFB\",\n            \"institution_code\": \"90122\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"GREENBANK MICROFINANCE BANK\",\n            \"institution_code\": \"090178\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"GREENVILLE MICROFINANCE BANK\",\n            \"institution_code\": \"090269\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"GROOMING MICROFINANCE BANK\",\n            \"institution_code\": \"090195\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"GTMobile\",\n            \"institution_code\": \"100009\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"GUARANTY TRUST BANK PLC\",\n            \"institution_code\": \"058\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Hackman Microfinance Bank\",\n            \"institution_code\": \"090147\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Haggai Mortgage Bank Limited\",\n            \"institution_code\": \"070017\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"HASAL MICROFINANCE BANK\",\n            \"institution_code\": \"090121\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"HEADWAY MICROFINANCE BANK\",\n            \"institution_code\": \"090363\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Hedonmark\",\n            \"institution_code\": \"100017\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"HERITAGE BANK\",\n            \"institution_code\": \"030\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"HIGHSTREET MICROFINANCE BANK\",\n            \"institution_code\": \"090175\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"HOPE PSB\",\n            \"institution_code\": \"120002\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"IBILE MFB\",\n            \"institution_code\": \"090118\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"IKENNE MICROFINANCE BANK\",\n            \"institution_code\": \"090324\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Ikire Microfinance Bank\",\n            \"institution_code\": \"090275\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Ilisan Microfinance Bank\",\n            \"institution_code\": \"090370\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Imo State Microfinance Bank\",\n            \"institution_code\": \"090258\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"IMPERIAL HOMES MORTGAGE BANK\",\n            \"institution_code\": \"415\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"INFINITY MICROFINANCE BANK\",\n            \"institution_code\": \"090157\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"INFINITY TRUST MORTGAGE BANK\",\n            \"institution_code\": \"070016\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Innovectives Kesh\",\n            \"institution_code\": \"100029\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Intellifin\",\n            \"institution_code\": \"100027\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"INTERLAND MICROFINANCE BANK\",\n            \"institution_code\": \"090386\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"IRL Microfinance Bank\",\n            \"institution_code\": \"090149\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"ISALEOYO MICROFINANCE BANK\",\n            \"institution_code\": \"090377\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"JAIZ BANK PLC\",\n            \"institution_code\": \"301\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"JUBILEE LIFE MORTGAGE BANK\",\n            \"institution_code\": \"402\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Kadick Integration Limited\",\n            \"institution_code\": \"110008\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"KADPOLY MICROFINANCE BANK\",\n            \"institution_code\": \"090320\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"KCMB Microfinance Bank\",\n            \"institution_code\": \"090191\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"KEYSTONE BANK LTD\",\n            \"institution_code\": \"082\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"KONTAGORA MICROFINANCE BANK\",\n            \"institution_code\": \"090299\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"KREDI MONEY MICROFINANCE BANK\",\n            \"institution_code\": \"090380\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"KUDA MICROFINANCE BANK\",\n            \"institution_code\": \"090267\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"LA FAYETTE MICROFINANCE BANK\",\n            \"institution_code\": \"090155\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"LAGOS BUILDING INVESTMENT COMPANY\",\n            \"institution_code\": \"070012\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"LAPO MICROFINANCE BANK\",\n            \"institution_code\": \"090177\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Lavender Microfinance Bank\",\n            \"institution_code\": \"090271\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"LEGEND MICROFINANCE BANK\",\n            \"institution_code\": \"090372\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"LINKS MICROFINANCE BANK\",\n            \"institution_code\": \"090435\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"LOTUS BANK LIMITED\",\n            \"institution_code\": \"303\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"LOVONUS MICROFINANCE BANK\",\n            \"institution_code\": \"090265\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"M36\",\n            \"institution_code\": \"100035\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"MAINLAND MICROFINANCE BANK\",\n            \"institution_code\": \"090323\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Mainstreet MFB\",\n            \"institution_code\": \"090171\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"MALACHY MICROFINANCE BANK\",\n            \"institution_code\": \"090174\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"MANNY MICROFINANCE BANK\",\n            \"institution_code\": \"090383\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"MARITIME MICROFINANCE BANK\",\n            \"institution_code\": \"090410\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"MAYFAIR MICROFINANCE BANK\",\n            \"institution_code\": \"090321\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Megapraise MICROFINANCE BANK\",\n            \"institution_code\": \"090280\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"MICROVIS MICROFINANCE BANK\",\n            \"institution_code\": \"090113\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"MIDLAND MICROFINANCE BANK\",\n            \"institution_code\": \"090192\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"MINT-FINEX MICROFINANCE BANK\",\n            \"institution_code\": \"090281\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Mkudi\",\n            \"institution_code\": \"100011\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"MOLUSI MICROFINANCE BANK\",\n            \"institution_code\": \"090362\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"MONEY TRUST MICROFINANCE BANK\",\n            \"institution_code\": \"090129\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"MoneyBox \",\n            \"institution_code\": \"100020\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"MOZFIN MICROFINANCE BANK\",\n            \"institution_code\": \"090392\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"MUTUAL BENEFITS MICROFINANCE BANK\",\n            \"institution_code\": \"090190\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"MUTUAL TRUST MICROFINANCE BANK\",\n            \"institution_code\": \"090151\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Nagarta Microfinance Bank\",\n            \"institution_code\": \"090152\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Navy Microfinance Bank\",\n            \"institution_code\": \"090263\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"NDIORAH MICROFINANCE BANK \",\n            \"institution_code\": \"090128\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"NEPTUNE MICROFINANCE BANK\",\n            \"institution_code\": \"090329\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"NEW DAWN MICROFINANCE BANK\",\n            \"institution_code\": \"090205\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"NEW GOLDEN PASTURES MICROFINANCE BANK\",\n            \"institution_code\": \"090378\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"New Prudential Bank\",\n            \"institution_code\": \"561\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"NIGERIA INTERBANK SETTLEMENT SYSTEM\",\n            \"institution_code\": \"907\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"NIGERIA INTERNATINAL BANK (CITIBANK)\",\n            \"institution_code\": \"023\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"NIP Virtual Bank \",\n            \"institution_code\": \"999\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"NIRSAL MICROFINANCE BANK\",\n            \"institution_code\": \"090194\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"NNEW WOMEN MICROFINANCE BANK\",\n            \"institution_code\": \"090283\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"NOVA MERCHANT BANK LTD\",\n            \"institution_code\": \"060003\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"NPF Microfinance Bank \",\n            \"institution_code\": \"552\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Nuture Microfinance Bank\",\n            \"institution_code\": \"090364\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"NWANNEGADI MICROFINANCE BANK\",\n            \"institution_code\": \"090399\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"OCHE MICROFINANCE BANK\",\n            \"institution_code\": \"090333\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"OHAFIA MFB\",\n            \"institution_code\": \"090119\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"OKPOGA MICROFINANCE BANK\",\n            \"institution_code\": \"090161\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"OLABISI ONABANJO UNIVERSITY MICROFINANCE BANK\",\n            \"institution_code\": \"090272\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"OLOWOLAGBA MICROFINANCE BANK\",\n            \"institution_code\": \"090404\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"OMIYE MICROFINANCE BANK\",\n            \"institution_code\": \"090295\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Omoluabi Savings and Loans Plc\",\n            \"institution_code\": \"606\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"ONE FINANCE\",\n            \"institution_code\": \"100026\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"OSCOTECH MICROFINANCE BANK\",\n            \"institution_code\": \"090396\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"PAGA\",\n            \"institution_code\": \"327\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Page MFBank\",\n            \"institution_code\": \"560\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"PALMPAY\",\n            \"institution_code\": \"100033\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Parallex Bank\",\n            \"institution_code\": \"000030\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"PARALLEX MFB\",\n            \"institution_code\": \"526\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Parkway-ReadyCash\",\n            \"institution_code\": \"100003\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"PATRICKGOLD MICROFINANCE BANK\",\n            \"institution_code\": \"090317\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"PayAttitude Online \",\n            \"institution_code\": \"329\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"PAYCOM (OPAY)\",\n            \"institution_code\": \"305\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"PECANTRUST MICROFINANCE BANK\",\n            \"institution_code\": \"090137\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"PENNYWISE MICROFINANCE BANK\",\n            \"institution_code\": \"090196\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Personal Trust Microfinance Bank\",\n            \"institution_code\": \"090135\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"PETRA MICROFINANCE BANK\",\n            \"institution_code\": \"090165\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"PILLAR MICROFINANCE BANK\",\n            \"institution_code\": \"090289\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"PLATINUM MORTGAGE BANK\",\n            \"institution_code\": \"070013\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"POLARIS BANK LTD (SKYE BANK PLC)\",\n            \"institution_code\": \"076\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"POLYUWANA MICROFINANCE BANK\",\n            \"institution_code\": \"090296\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"PREEMINENT MICROFINANCE BANK\",\n            \"institution_code\": \"090412\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"PREMIUM TRUST BANK\",\n            \"institution_code\": \"000031\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"PRESTIGE MICROFINANCE BANK\",\n            \"institution_code\": \"090274\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"PROVIDUS BANK\",\n            \"institution_code\": \"101\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"PURPLEMONEY MICROFINANCE BANK\",\n            \"institution_code\": \"090303\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"QUICKFUND MICROFINANCE BANK\",\n            \"institution_code\": \"090261\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"RAHAMA MICROFINANCE BANK\",\n            \"institution_code\": \"090170\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"RAND MERCHANT BANK\",\n            \"institution_code\": \"502\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"REFUGE MORTGAGE BANK\",\n            \"institution_code\": \"070011\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"REGENT MFB\",\n            \"institution_code\": \"090125\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"RELIANCE MICROFINANCE BANK\",\n            \"institution_code\": \"090173\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"RENMONEY MICROFINANCE BANK\",\n            \"institution_code\": \"090198\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"REPHIDIM MICROFINANCE BANK\",\n            \"institution_code\": \"090322\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"RICHWAY MICROFINANCE BANK\",\n            \"institution_code\": \"090132\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"ROLEZ MICROFINANCE BANK  \",\n            \"institution_code\": \"090405\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Royal Exchange Microfinance Bank\",\n            \"institution_code\": \"090138\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"SAFE HAVEN MICROFINANCE BANK\",\n            \"institution_code\": \"090286\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Safetrust Mortgage bank \",\n            \"institution_code\": \"403\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"SAGAMU MICROFINANCE BANK LTD\",\n            \"institution_code\": \"090140\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"SEED CAPITAL MICROFINANCE BANK\",\n            \"institution_code\": \"609\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"SEEDVEST MICROFINANCE BANK\",\n            \"institution_code\": \"090369\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"SPARKLE\",\n            \"institution_code\": \"090325\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"SPECTRUM MICROFINANCE BANK  \",\n            \"institution_code\": \"090436\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"STANBIC IBTC BANK PLC\",\n            \"institution_code\": \"221\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"StanbicIBTC@easewallet\",\n            \"institution_code\": \"100007\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"STANDARD CHARTERED BANK NIGERIA LTD\",\n            \"institution_code\": \"068\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Stanford Microfinance Bank\",\n            \"institution_code\": \"090162\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Stellas Microfinance bank\",\n            \"institution_code\": \"090262\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"STERLING BANK PLC\",\n            \"institution_code\": \"232\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"SULSPAP MICROFINANCE BANK\",\n            \"institution_code\": \"090305\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"SUNTRUST BANK\",\n            \"institution_code\": \"100\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"TagPay\",\n            \"institution_code\": \"100023\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"TAJ BANK\",\n            \"institution_code\": \"000026\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"TANGERINE MONEY MICROFINANCE BANK\",\n            \"institution_code\": \"090426\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"TCF\",\n            \"institution_code\": \"090115\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"TeasyMobile\",\n            \"institution_code\": \"100010\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"THINK FINANCE MICROFINANCE BANK\",\n            \"institution_code\": \"090373\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"TITAN TRUST BANK\",\n            \"institution_code\": \"000025\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"TRIDENT MICROFINANCE BANK\",\n            \"institution_code\": \"090146\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"TRUST MICROFINANCE BANK\",\n            \"institution_code\": \"090327\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"TRUSTBANC J6 Microfinance Bank \",\n            \"institution_code\": \"90123\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"TRUSTFUND MICROFINANCE BANK\",\n            \"institution_code\": \"090276\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Uniben Microfinance Bank\",\n            \"institution_code\": \"090266\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Unical Microfinance Bank\",\n            \"institution_code\": \"090193\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"UNIMAID MICROFINANCE BANK LTD\",\n            \"institution_code\": \"090464\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"UNION BANK OF NIGERIA PLC\",\n            \"institution_code\": \"032\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"UNITED BANK FOR AFRICA PLC\",\n            \"institution_code\": \"033\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"UNITY BANK PLC\",\n            \"institution_code\": \"215\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"UNN MICROFINANCE BANK\",\n            \"institution_code\": \"090251\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"VFD MICROFINANCE BANK\",\n            \"institution_code\": \"090110\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Virtue Microfinance Bank\",\n            \"institution_code\": \"090150\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"VISA MICROFINANCE BANK\",\n            \"institution_code\": \"090139\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"VTNetworks\",\n            \"institution_code\": \"100012\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"WEMA BANK PLC\",\n            \"institution_code\": \"035\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"WETLAND MFB\",\n            \"institution_code\": \"090120\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"XSLNCE Microfinance Bank\",\n            \"institution_code\": \"090124\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"YES MICROFINANCE BANK\",\n            \"institution_code\": \"090142\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"YOBE MICROFINANCE BANK\",\n            \"institution_code\": \"090252\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"ZENITH INTERNATIONAL BANK LTD\",\n            \"institution_code\": \"057\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"ZenithMobile\",\n            \"institution_code\": \"100018\",\n            \"institution_country\": \"Nigeria\"\n        },\n        {\n            \"institution_name\": \"Zinternet Nigera Limited\",\n            \"institution_code\": \"100025\",\n            \"institution_country\": \"Nigeria\"\n        }\n    ]\n}"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "bearer",
+        "bearer": [
+            {
+                "key": "token",
+                "value": "{{api_key}}",
+                "type": "string"
+            }
+        ]
+    },
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "exec": [
+                    ""
+                ]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {},
+                "exec": [
+                    ""
+                ]
+            }
+        }
+    ]
+}

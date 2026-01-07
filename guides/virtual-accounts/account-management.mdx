@@ -1,0 +1,86 @@
+---
+title: 'Account Management'
+description: 'Advanced techniques for managing virtual accounts effectively'
+icon: vault
+---
+
+Effective virtual account management is essential for scaling your payment collection operations. This guide covers advanced management techniques, automation strategies, and best practices.
+
+## Account Organization
+
+### Naming Conventions
+
+Establish clear naming conventions for easy identification:
+
+<CodeGroup>
+```javascript Naming Examples
+// Order-based naming
+account_name: `Order-${orderId}-${customerName}`
+
+// Customer-based naming
+account_name: `Customer-${customerId}`
+
+// Invoice-based naming
+account_name: `Invoice-${invoiceNumber}`
+
+// Campaign-based naming
+account_name: `Campaign-${campaignId}-${donorName}`
+```
+</CodeGroup>
+
+### Metadata Usage
+
+Use metadata to store additional information:
+
+```json
+{
+  "metadata": {
+    "order_id": "ORD-12345",
+    "customer_id": "CUST-67890",
+    "invoice_number": "INV-001",
+    "campaign_id": "CAM-2024-001",
+    "reference": "custom-reference-123"
+  }
+}
+```
+
+
+## Account Status Management
+
+### Status Types
+
+- **Active** - Account is active and can receive payments
+- **Inactive** - Account is inactive and cannot receive payments
+- **Expired** - Account has expired (if expiration is configured)
+- **Suspended** - Account is suspended (typically for compliance reasons)
+
+### Status Monitoring
+
+Monitor account status to ensure accounts are ready to receive payments:
+
+<CodeGroup>
+```javascript Status Monitoring
+async function checkAccountStatus(accountId) {
+  const response = await poolerClient.get(`/accounts/virtual-accounts/${accountId}`);
+  const account = response.data.data;
+  
+  if (!account.active) {
+    // Handle inactive account
+    console.warn(`Account ${accountId} is inactive`);
+    // Optionally create a new account
+  }
+  
+  return account;
+}
+```
+</CodeGroup>
+
+## Best Practices Summary
+
+<Tip>
+  **Create Accounts Proactively**:
+  - Create accounts before payment is needed.
+  - Store all relevant information in metadata for easy tracking.
+  - Regularly check account status to ensure they're ready.
+  - Automate payment matching and reconciliation processes.
+</Tip>

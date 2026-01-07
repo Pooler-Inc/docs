@@ -1,0 +1,40 @@
+---
+title: 'Retrieve Recipient'
+openapi: 'GET /payments/recipients/{id}'
+---
+
+Retrieve detailed information about a specific payment recipient by its ID.
+
+## Overview
+
+This endpoint returns comprehensive details about a single recipient, including all account information, limits, identification, and payment details.
+
+## Path Parameters
+
+<ParamField path="id" type="string" required>
+  Recipient UUID
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="object">
+  Complete recipient object including:
+  
+  - `id`: Recipient UUID
+  - `merchant_id`: Your merchant ID
+  - `account_number`: Account number
+  - `account_name`: Account holder name
+  - `account_type`: Account type (individual/business)
+  - `is_internal_account`: Whether it's an internal Pooler account
+  - `account_currency`: Currency code
+  - `account_bank_name`: Bank name
+  - `account_bank_code`: Bank code
+  - `account_country_code`: Country code
+  - `account_country`: Country name
+  - `identification`: Identification object with type, number, and image
+  - `limit`: Payment limit
+  - `payment_details`: Payment details object
+  - `created_at`: Creation timestamp
+  - `updated_at`: Last update timestamp
+</ResponseField>
+

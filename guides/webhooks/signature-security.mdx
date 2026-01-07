@@ -1,0 +1,481 @@
+---
+title: 'Signature Security'
+description: 'How to verify webhook signatures to ensure requests are from Pooler'
+icon: shield
+---
+
+Webhook signature verification is essential for security. It ensures that webhook requests are actually from Pooler and haven't been tampered with. This guide explains how to verify webhook signatures.
+
+## Why Verify Signatures?
+
+### Security Benefits
+
+- **Authentication** - Verify requests are from Pooler
+- **Integrity** - Ensure payload hasn't been modified
+- **Prevent Spoofing** - Prevent attackers from sending fake webhooks
+- **Compliance** - Meet security and compliance requirements
+
+<Warning>
+  Never process webhooks without verifying signatures. Unverified webhooks are a security risk.
+</Warning>
+
+
+### Signature Generation
+
+Pooler generates signatures using HMAC-SHA256 with your API key:
+
+1. **Create Payload String** - Stringify the webhook JSON payload
+2. **Generate HMAC** - Create HMAC-SHA256 using your API key
+3. **Encode Signature** - Hex encode the HMAC
+4. **Include in Header** - Send signature in `x-swim-token` header
+
+### Signature Format
+
+Signatures are sent in the `x-swim-token` header as a hex-encoded HMAC-SHA256:
+
+```
+x-swim-token: a1b2c3d4e5f6...
+```
+
+The signature is a simple hex string - no timestamp or version prefix.
+
+### Getting Your API Key
+
+1. Log in to your [Pooler Dashboard](https://app.usepooler.com)
+2. Navigate to **Settings** → **Developers**
+3. Copy your **API Key** (use the same key you use for API requests)
+
+<Warning>
+  Keep your API key secure. Never commit it to version control or expose it in client-side code.
+</Warning>
+
+### Store API Key Securely
+
+Store the API key as an environment variable:
+
+```bash
+# .env file
+POOLER_API_KEY=your_api_key_here
+```
+
+## Implementation
+
+### Node.js Implementation
+
+<CodeGroup>
+```javascript Express.js
+const crypto = require('crypto');
+
+function verifyWebhookSignature(req, apiKey) {
+  const signature = req.headers['x-swim-token'];
+  
+  if (!signature) {
+    return false;
+  }
+  
+  // Create expected signature
+  const payload = JSON.stringify(req.body);
+  const expectedSignature = crypto
+    .createHmac('sha256', apiKey)
+    .update(payload)
+    .digest('hex');
+  
+  // Compare signatures using constant-time comparison
+  return crypto.timingSafeEqual(
+    Buffer.from(signature),
+    Buffer.from(expectedSignature)
+  );
+}
+
+// Usage in endpoint
+app.post('/webhooks/pooler', express.json(), (req, res) => {
+  const apiKey = process.env.POOLER_API_KEY;
+  
+  if (!verifyWebhookSignature(req, apiKey)) {
+    return res.status(401).send('Invalid signature');
+  }
+  
+  // Process webhook
+  processWebhook(req.body);
+  res.status(200).send('OK');
+});
+```
+
+```javascript Simple Version
+const crypto = require('crypto');
+
+app.post('/webhooks/pooler', express.json(), (req, res) => {
+  const apiKey = process.env.POOLER_API_KEY;
+  
+  const signature = crypto
+    .createHmac('sha256', apiKey)
+    .update(JSON.stringify(req.body))
+    .digest('hex');
+  
+  if (signature === req.headers['x-swim-token']) {
+    // Body is signed and valid
+    processWebhook(req.body);
+    res.status(200).send('OK');
+  } else {
+    res.status(401).send('Invalid signature');
+  }
+});
+```
+</CodeGroup>
+
+### Python Implementation
+
+<CodeGroup>
+```python Flask
+import hmac
+import hashlib
+import json
+import os
+from flask import request
+
+def verify_webhook_signature(request, api_key):
+    signature_header = request.headers.get('x-swim-token')
+    
+    if not signature_header:
+        return False
+    
+    # Create expected signature
+    payload = json.dumps(request.json, sort_keys=True, separators=(',', ':'))
+    expected_signature = hmac.new(
+        api_key.encode('utf-8'),
+        payload.encode('utf-8'),
+        hashlib.sha256
+    ).hexdigest()
+    
+    # Compare signatures using constant-time comparison
+    return hmac.compare_digest(signature_header, expected_signature)
+
+# Usage in endpoint
+@app.route('/webhooks/pooler', methods=['POST'])
+def handle_webhook():
+    api_key = os.getenv('POOLER_API_KEY')
+    
+    if not verify_webhook_signature(request, api_key):
+        return 'Invalid signature', 401
+    
+    # Process webhook
+    process_webhook(request.json)
+    return 'OK', 200
+```
+
+```python Simple Version
+import hmac
+import hashlib
+import json
+import os
+from flask import request
+
+@app.route('/webhooks/pooler', methods=['POST'])
+def handle_webhook():
+    api_key = os.getenv('POOLER_API_KEY')
+    
+    signature = hmac.new(
+        api_key.encode('utf-8'),
+        json.dumps(request.json, sort_keys=True, separators=(',', ':')).encode('utf-8'),
+        hashlib.sha256
+    ).hexdigest()
+    
+    if signature == request.headers.get('x-swim-token'):
+        # Body is signed and valid
+        process_webhook(request.json)
+        return 'OK', 200
+    else:
+        return 'Invalid signature', 401
+```
+</CodeGroup>
+
+### Go Implementation
+
+<CodeGroup>
+```go Gin
+package main
+
+import (
+    "crypto/hmac"
+    "crypto/sha256"
+    "encoding/hex"
+    "encoding/json"
+    "net/http"
+    "os"
+    
+    "github.com/gin-gonic/gin"
+)
+
+func verifyWebhookSignature(c *gin.Context, apiKey string) bool {
+    signature := c.GetHeader("x-swim-token")
+    if signature == "" {
+        return false
+    }
+    
+    // Get request body
+    var body map[string]interface{}
+    if err := c.ShouldBindJSON(&body); err != nil {
+        return false
+    }
+    
+    // Create expected signature
+    payload, _ := json.Marshal(body)
+    mac := hmac.New(sha256.New, []byte(apiKey))
+    mac.Write(payload)
+    expectedSignature := hex.EncodeToString(mac.Sum(nil))
+    
+    // Compare signatures using constant-time comparison
+    return hmac.Equal([]byte(signature), []byte(expectedSignature))
+}
+
+func handleWebhook(c *gin.Context) {
+    apiKey := os.Getenv("POOLER_API_KEY")
+    
+    if !verifyWebhookSignature(c, apiKey) {
+        c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid signature"})
+        return
+    }
+    
+    // Process webhook
+    var body map[string]interface{}
+    c.ShouldBindJSON(&body)
+    processWebhook(body)
+    
+    c.JSON(http.StatusOK, gin.H{"status": "OK"})
+}
+```
+
+```go Simple Version
+func handleWebhook(c *gin.Context) {
+    apiKey := os.Getenv("POOLER_API_KEY")
+    
+    var body map[string]interface{}
+    c.ShouldBindJSON(&body)
+    
+    payload, _ := json.Marshal(body)
+    mac := hmac.New(sha256.New, []byte(apiKey))
+    mac.Write(payload)
+    signature := hex.EncodeToString(mac.Sum(nil))
+    
+    if signature == c.GetHeader("x-swim-token") {
+        // Body is signed and valid
+        processWebhook(body)
+        c.JSON(http.StatusOK, gin.H{"status": "OK"})
+    } else {
+        c.JSON(http.StatusUnauthorized, gin.H{"error": "Invalid signature"})
+    }
+}
+```
+</CodeGroup>
+
+### PHP Implementation
+
+<CodeGroup>
+```php Laravel
+<?php
+
+function verifyWebhookSignature($request, $apiKey) {
+    $signature = $request->header('x-swim-token');
+    
+    if (!$signature) {
+        return false;
+    }
+    
+    // Create expected signature
+    $payload = json_encode($request->all());
+    $expectedSignature = hash_hmac('sha256', $payload, $apiKey);
+    
+    // Compare signatures using constant-time comparison
+    return hash_equals($signature, $expectedSignature);
+}
+
+// Usage in route
+Route::post('/webhooks/pooler', function (Request $request) {
+    $apiKey = env('POOLER_API_KEY');
+    
+    if (!verifyWebhookSignature($request, $apiKey)) {
+        return response('Invalid signature', 401);
+    }
+    
+    // Process webhook
+    processWebhook($request->all());
+    return response('OK', 200);
+});
+```
+
+```php Simple Version
+Route::post('/webhooks/pooler', function (Request $request) {
+    $apiKey = env('POOLER_API_KEY');
+    
+    $signature = hash_hmac('sha256', json_encode($request->all()), $apiKey);
+    
+    if ($signature === $request->header('x-swim-token')) {
+        // Body is signed and valid
+        processWebhook($request->all());
+        return response('OK', 200);
+    } else {
+        return response('Invalid signature', 401);
+    }
+});
+```
+</CodeGroup>
+
+### Ruby Implementation
+
+<CodeGroup>
+```ruby Rails
+require 'openssl'
+require 'json'
+
+def verify_webhook_signature(request, api_key)
+  signature = request.headers['x-swim-token']
+  
+  return false unless signature
+  
+  # Create expected signature
+  payload = request.body.read
+  request.body.rewind
+  expected_signature = OpenSSL::HMAC.hexdigest(
+    OpenSSL::Digest.new('sha256'),
+    api_key,
+    payload
+  )
+  
+  # Compare signatures using constant-time comparison
+  ActiveSupport::SecurityUtils.secure_compare(signature, expected_signature)
+end
+
+# Usage in controller
+class WebhooksController < ApplicationController
+  skip_before_action :verify_authenticity_token
+  
+  def pooler
+    api_key = ENV['POOLER_API_KEY']
+    
+    unless verify_webhook_signature(request, api_key)
+      return render json: { error: 'Invalid signature' }, status: :unauthorized
+    end
+    
+    # Process webhook
+    process_webhook(JSON.parse(request.body.read))
+    render json: { status: 'OK' }, status: :ok
+  end
+end
+```
+
+```ruby Simple Version
+def pooler
+  api_key = ENV['POOLER_API_KEY']
+  payload = request.body.read
+  request.body.rewind
+  
+  signature = OpenSSL::HMAC.hexdigest(
+    OpenSSL::Digest.new('sha256'),
+    api_key,
+    payload
+  )
+  
+  if signature == request.headers['x-swim-token']
+    # Body is signed and valid
+    process_webhook(JSON.parse(payload))
+    render json: { status: 'OK' }, status: :ok
+  else
+    render json: { error: 'Invalid signature' }, status: :unauthorized
+  end
+end
+```
+</CodeGroup>
+
+## Testing Signature Verification
+
+### Test with Sample Webhook
+
+<CodeGroup>
+```javascript Test Example
+const crypto = require('crypto');
+
+const testWebhook = {
+  event: 'payment.completed',
+  data: { id: 'payment_123' }
+};
+
+const apiKey = 'test_api_key';
+const payload = JSON.stringify(testWebhook);
+const signature = crypto
+  .createHmac('sha256', apiKey)
+  .update(payload)
+  .digest('hex');
+
+// Simulate request
+const req = {
+  body: testWebhook,
+  headers: {
+    'x-swim-token': signature
+  }
+};
+
+const isValid = verifyWebhookSignature(req, apiKey);
+console.log('Signature valid:', isValid);
+```
+
+```python Test Example
+import hmac
+import hashlib
+import json
+
+test_webhook = {
+    'event': 'payment.completed',
+    'data': {'id': 'payment_123'}
+}
+
+api_key = 'test_api_key'
+payload = json.dumps(test_webhook, sort_keys=True, separators=(',', ':'))
+signature = hmac.new(
+    api_key.encode('utf-8'),
+    payload.encode('utf-8'),
+    hashlib.sha256
+).hexdigest()
+
+# Simulate request
+class MockRequest:
+    def __init__(self, body, signature):
+        self.json_data = body
+        self.headers = {'x-swim-token': signature}
+    
+    @property
+    def json(self):
+        return self.json_data
+
+req = MockRequest(test_webhook, signature)
+is_valid = verify_webhook_signature(req, api_key)
+print(f'Signature valid: {is_valid}')
+```
+</CodeGroup>
+
+### Issue: JSON Stringification Differences
+
+Different JSON stringification methods can produce different strings:
+
+<CodeGroup>
+```javascript Wrong - Different Output
+// This may produce different string than expected
+JSON.stringify(body)  // May include spaces
+```
+
+```javascript Correct - Consistent Output
+// Use consistent stringification
+JSON.stringify(body)  // Standard JSON.stringify is fine
+// Or for Python-like consistency:
+JSON.stringify(body, Object.keys(body).sort())
+```
+</CodeGroup>
+
+## Security Best Practices
+
+<Tip>
+  - Never skip signature verification, even in development.
+  - Use timing-safe comparison functions to prevent timing attacks.
+  - Use environment variables or secret management services. Never hardcode API keys.
+  - Log failed verifications for security monitoring.
+  - Always use timing-safe comparison functions (e.g., `crypto.timingSafeEqual`, `hmac.compare_digest`, `hash_equals`) to prevent timing attacks.
+</Tip>

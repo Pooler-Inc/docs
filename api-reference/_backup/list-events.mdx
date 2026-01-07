@@ -1,0 +1,48 @@
+---
+title: 'List Events'
+openapi: 'GET /webhooks/events'
+---
+
+Retrieve a paginated list of webhook events that have been generated for your account. This allows you to view the history of webhook events and their delivery status.
+
+## Overview
+
+This endpoint returns all webhook events that have been generated for your account, including their status, delivery attempts, and acknowledgment status.
+
+## Query Parameters
+
+<ParamField query="page" type="integer">
+  Page number for pagination
+</ParamField>
+
+<ParamField query="per_page" type="integer">
+  Number of items per page
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="object">
+  Paginated response containing:
+  
+  - `total_pages`: Total number of pages
+  - `current_page`: Current page number
+  - `total_records`: Total number of webhook events
+  - `next_page`: URL for next page
+  - `previous_page`: URL for previous page
+  - `items`: Array of webhook event objects
+</ResponseField>
+
+<ResponseField name="data.items[]" type="object">
+  Each webhook event object includes:
+  
+  - `id`: Event UUID
+  - `type`: Event type (e.g., "chargeback")
+  - `event`: Event name (e.g., "transfer.fulfilled")
+  - `data`: Event payload data
+  - `attempts`: Number of delivery attempts
+  - `acknowledged`: Whether event was acknowledged
+  - `acknowledged_at`: Timestamp when acknowledged
+  - `created_at`: Creation timestamp
+  - `updated_at`: Last update timestamp
+</ResponseField>
+

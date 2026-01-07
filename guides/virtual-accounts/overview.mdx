@@ -1,0 +1,38 @@
+---
+title: 'Overview'
+description: 'Understanding virtual accounts and how they work in Pooler'
+icon: money-bill-1-wave
+---
+
+Virtual accounts are bank accounts that Pooler creates on-demand for your business. They allow you to collect payments from customers without the complexity of traditional banking integrations. Each virtual account has a unique account number that customers can send payments to.
+
+<Info>
+  Only Nigeria 🇳🇬 virtual accounts are supported for now
+</Info>
+
+<img src="/images/virtual-account-architecture.png" alt="Virtual Account Architecture Diagram" />
+
+
+### Account Security
+
+- **Unique Account Numbers** - Each account has a unique, non-guessable account number
+- **Account Verification** - Accounts are verified before activation
+- **Transaction Monitoring** - All transactions are monitored for suspicious activity
+
+### Compliance
+
+- **KYC Requirements** - Account creation may require customer verification
+- **Regulatory Compliance** - All accounts comply with local banking regulations
+- **Transaction Reporting** - Transaction data available for compliance reporting
+
+## Best Practices
+
+<Tip>
+  **Use Unique Accounts**:
+  - Create a unique virtual account for each customer or transaction for easy tracking.
+  - Save virtual account details (account number, ID) in your database for reference.
+  - Set up webhook handlers to receive real-time payment notifications.
+  - Regularly reconcile virtual account payments with your records.
+  - Monitor account expiration and create new accounts when needed.
+</Tip>
+

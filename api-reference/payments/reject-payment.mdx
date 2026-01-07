@@ -1,0 +1,21 @@
+---
+title: 'Reject Payment'
+openapi: 'POST /payments/reject'
+---
+
+Reject a pending payment transaction. This endpoint allows you to cancel a payment that was initiated but not yet confirmed.
+
+## Overview
+
+Use this endpoint to reject a payment that is in pending status. This is useful if you need to cancel a payment before it's executed.
+
+## Request Body
+
+<ParamField body="reason" type="string">
+  Optional reason for rejecting the payment
+</ParamField>
+
+## Response
+
+Returns a success response indicating the payment has been rejected.
+

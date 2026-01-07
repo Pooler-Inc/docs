@@ -1,14 +1,66 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "Mint Starter Kit",
+  "theme": "willow",
+  "name": "Pooler Developer Documentation",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#2C1DFF",
+    "light": "#2C1DFF",
+    "dark": "#2C1DFF"
   },
   "favicon": "/favicon.svg",
+  "metadata": {
+    "title": "API Documentation - Woodcore",
+    "description": "Comprehensive Woodcore Documentation & Integration Guide for Developers, System Integrators, and Financial Institutions. Features detailed API references, implementation guides, and best practices for digital banking, lending, payments, and core banking solutions.",
+    "keywords": "Woodcore, API documentation, digital banking, lending, payments, core banking, financial services, fintech, banking API, integration guide, system integrators",
+    "author": "Woodcore",
+    "robots": "index, follow",
+    "language": "English",
+    "revisit-after": "7 days",
+    "theme-color": "#16A34A",
+    "geo": {
+      "region": "Global",
+      "placename": "Global"
+    },
+    "og": {
+      "type": "website",
+      "url": "https://docs.woodcore.co",
+      "title": "API Documentation - Woodcore",
+      "description": "Comprehensive Woodcore Documentation & Integration Guide for Developers, System Integrators, and Financial Institutions. Features detailed API references, implementation guides, and best practices for digital banking, lending, payments, and core banking solutions.",
+      "image": "https://res.cloudinary.com/dko7n7x16/image/upload/v1746869610/Banner-2_1_l5kksz.png",
+      "image:width": "1200",
+      "image:height": "630",
+      "image:alt": "API Documentation - Woodcore",
+      "site_name": "API Documentation - Woodcore",
+      "locale": "en_US",
+      "logo": "https://res.cloudinary.com/dko7n7x16/image/upload/v1719298807/logo_kogluj.png"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "url": "https://docs.woodcore.co",
+      "title": "Woodcore Documentation & Guide",
+      "description": "Woodcore Documentation & Guide",
+      "image": "https://res.cloudinary.com/dko7n7x16/image/upload/v1746869610/Banner-2_1_l5kksz.png",
+      "image:alt": "API Documentation - Woodcore",
+      "site": "https://x.com/woodcore"
+    },
+    "apple": {
+      "mobile-web-app-capable": "yes",
+      "mobile-web-app-status-bar-style": "black-translucent",
+      "mobile-web-app-title": "Woodcore Docs"
+    },
+    "canonical": "https://docs.woodcore.co"
+  },
   "navigation": {
+    "languages": [
+      {
+        "code": "en",
+        "name": "English"
+      },
+      {
+        "code": "fr",
+        "name": "French"
+      }
+    ],
     "tabs": [
       {
         "tab": "Guides",
@@ -16,33 +68,45 @@
           {
             "group": "Getting started",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "guides/getting-started/introduction",
+              "guides/getting-started/quickstart",
+              "guides/getting-started/go-live-checklist"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Business",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "guides/business/coverages",
+              "guides/business/prefunded-float"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Virtual Accounts",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "guides/virtual-accounts/overview",
+              "guides/virtual-accounts/account-management"
             ]
           },
           {
-            "group": "AI tools",
+            "group": "Recipients",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "guides/recipients/overview"
+            ]
+          },
+          {
+            "group": "Webhooks",
+            "pages": [
+              "guides/webhooks/overview",
+              "guides/webhooks/signature-security"
+            ]
+          },
+          {
+            "group": "Payments",
+            "pages": [
+              "guides/payments/overview",
+              "guides/payments/payment-flows",
+              "guides/payments/route-management",
+              "guides/payments/conversion-rates"
             ]
           }
         ]
@@ -57,66 +121,131 @@
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Business",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "api-reference/business/get-account-details",
+              "api-reference/business/get-merchant-coverages"
+            ]
+          },
+          {
+            "group": "Payments",
+            "pages": [
+              "api-reference/payments/create-payment",
+              "api-reference/payments/confirm-payment",
+              "api-reference/payments/reject-payment",
+              "api-reference/payments/query-payment-status",
+              "api-reference/payments/list-payments",
+              "api-reference/payments/retrieve-payment"
+            ]
+          },
+          {
+            "group": "Accounts",
+            "pages": [
+              "api-reference/accounts/create-virtual-account",
+              "api-reference/accounts/list-virtual-accounts",
+              "api-reference/accounts/retrieve-virtual-account"
+            ]
+          },
+          {
+            "group": "Recipients",
+            "pages": [
+              "api-reference/recipients/create-recipient",
+              "api-reference/recipients/edit-recipient",
+              "api-reference/recipients/list-recipients",
+              "api-reference/recipients/retrieve-recipient"
+            ]
+          },
+          {
+            "group": "Webhooks",
+            "pages": [
+              "api-reference/webhooks/list-events",
+              "api-reference/webhooks/trigger-events"
+            ]
+          },
+          {
+            "group": "FX",
+            "pages": [
+              "api-reference/fx/get-quotes",
+              "api-reference/fx/get-rates"
+            ]
+          },
+          {
+            "group": "Utilities",
+            "pages": [
+              "api-reference/utilities/nigerian-name-enquiry",
+              "api-reference/utilities/get-supported-corridors",
+              "api-reference/utilities/global-institution-list"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Changelog",
+        "groups": [
+          {
+            "group": "API Changelog",
+            "pages": [
+              "api-changelog/introduction"
             ]
           }
         ]
       }
     ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
+    "global": {}
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logo/Logo.svg",
+    "dark": "/logo/Logo_Transparent.svg"
   },
   "navbar": {
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:tech@usepooler.com"
       }
     ],
     "primary": {
       "type": "button",
       "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "href": "https://app.usepooler.com"
     }
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/usepooler",
+      "github": "https://github.com/usepooler",
+      "linkedin": "https://linkedin.com/company/usepooler"
     }
-  }
+  },
+  "api": {
+    "baseUrl": [
+      {
+        "url": "https://api.usepooler.com",
+        "description": "Production"
+      },
+      {
+        "url": "https://sandbox.usepooler.com",
+        "description": "Sandbox"
+      }
+    ],
+    "auth": {
+      "method": "bearer"
+    },
+    "playground": {
+      "mode": "simple"
+    }
+  },
+  "openapi": "api-reference/openapi.json"
 }

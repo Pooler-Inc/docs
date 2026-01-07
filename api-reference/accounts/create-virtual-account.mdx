@@ -1,0 +1,72 @@
+---
+title: 'Create Virtual Account'
+openapi: 'POST /accounts/virtual-accounts'
+---
+
+Create a new virtual account for receiving payments. Virtual accounts can be used to collect payments from customers and are automatically generated with unique account numbers.
+
+## Overview
+
+Virtual accounts are bank accounts that are created on-demand for receiving payments. Each virtual account has a unique account number that customers can send payments to. Funds received in virtual accounts are automatically credited to your main Pooler account.
+
+## Request Body
+
+<ParamField body="account_type" type="string" required>
+  Type of account holder: "individual" or "business"
+</ParamField>
+
+<ParamField body="account_name" type="string" required>
+  Name of the account holder
+</ParamField>
+
+<ParamField body="first_name" type="string">
+  First name (required for individual accounts)
+</ParamField>
+
+<ParamField body="last_name" type="string">
+  Last name (required for individual accounts)
+</ParamField>
+
+<ParamField body="display_name" type="string">
+  Display name for the account
+</ParamField>
+
+<ParamField body="email" type="string" required>
+  Email address of the account holder
+</ParamField>
+
+<ParamField body="bvn" type="string">
+  Bank Verification Number (required for Nigerian accounts)
+</ParamField>
+
+<ParamField body="mobile_number" type="string">
+  Mobile phone number
+</ParamField>
+
+<ParamField body="metadata" type="object">
+  Additional metadata object that can include:
+  
+  - `business_reg_number`: Business registration number
+  - `country`: Country code
+  - `use_case`: Use case description
+  - `reference`: Custom reference
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="object">
+  Virtual account details including:
+  
+  - `id`: Virtual account UUID
+  - `currency`: Account currency code
+  - `account_number`: Generated account number
+  - `account_name`: Account holder name
+  - `bank_name`: Bank name
+  - `is_active`: Whether account is active
+  - `created_at`: Creation timestamp
+</ResponseField>
+
+<Note>
+  The account number is unique and can be shared with customers for receiving payments. All payments to this account will be automatically credited to your Pooler account.
+</Note>
+

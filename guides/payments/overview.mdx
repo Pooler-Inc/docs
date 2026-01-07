@@ -1,0 +1,182 @@
+---
+title: 'Overview'
+description: 'Understanding payments and how they work in Pooler'
+icon: receipt
+---
+
+Payments are the core functionality of Pooler. This guide provides an overview of how payments work, the payment process, and key concepts you need to understand.
+
+## What are Payments?
+
+Payments in Pooler are transfers of funds from your account to recipient bank accounts. Pooler handles the complexity of routing payments through various payment networks, currency conversions, and compliance requirements.
+
+
+## Payment Types
+
+### Local Payments
+
+Payments within the same country:
+
+- **NIP (Nigeria)** - Instant bank transfers in Nigeria
+- **Local Bank Transfers** - Standard bank transfers within country
+- **Mobile Money** - Mobile money transfers (where supported)
+
+
+### Cross-Border Payments
+
+Payments between different countries:
+
+- **SWIFT** - International wire transfers
+- **Regional Networks** - Regional payment networks
+- **Corridor-Specific** - Optimized routes for specific corridors
+
+## Payment Process
+
+### Two-Step Payment Flow
+
+Pooler uses a two-step payment process for transparency and control:
+
+<Steps>
+  <Step title="Initiate Payment">
+    Create a payment quote with fees and exchange rates.
+  </Step>
+  
+  <Step title="Review Quote">
+    Review the quote including:
+    - Payment amount
+    - Fees
+    - Exchange rates (if applicable)
+    - Total amount to deduct
+  </Step>
+  
+  <Step title="Confirm Payment">
+    Confirm the payment to execute the transfer.
+  </Step>
+  
+  <Step title="Processing">
+    Pooler processes the payment through selected route.
+  </Step>
+  
+  <Step title="Completion">
+    Payment is completed and recipient receives funds.
+  </Step>
+</Steps>
+
+
+
+## Payment States
+
+### Payment Statuses
+
+Payments progress through various states:
+
+| Status | Description |
+|--------|-------------|
+| `initiated` | Payment quote created |
+| `pending` | Payment confirmed, awaiting processing |
+| `processing` | Payment is being processed |
+| `completed` | Payment successfully completed |
+| `failed` | Payment processing failed |
+| `rejected` | Payment was rejected |
+
+
+## Key Concepts
+
+### Payment Amounts
+
+| Amount Type | Description |
+|-------------|-------------|
+| **Source Amount** | Amount you want to send (in source currency) |
+| **Destination Amount** | Amount recipient receives (in destination currency) |
+| **Exchange Rate** | Rate used for currency conversion |
+| **Fees** | Transaction and processing fees |
+| **Total Deduction** | Total amount deducted from your account |
+
+
+### Payment Routes
+
+Pooler selects optimal payment routes based on:
+
+- **Destination** - Recipient country and bank
+- **Currency** - Source and destination currencies
+- **Amount** - Payment amount
+- **Speed** - Processing time requirements
+- **Cost** - Route fees and exchange rates
+
+<Info>
+  See [Route Management](/guides/payments/route-management) for details on how routes are selected and optimized.
+</Info>
+
+### Currency Conversion
+
+When sending payments in different currencies:
+
+- **Exchange Rates** - Real-time or quoted rates
+- **Conversion Fees** - Fees for currency conversion
+- **Rate Lock** - Quotes may lock rates for a period
+
+<Info>
+  See [Conversion Rates](/guides/payments/conversion-rates) for details on exchange rates and conversions.
+</Info>
+
+### Fees
+
+Payments may include various fees:
+
+| Fee Type | Description |
+|----------|-------------|
+| **Transaction Fees** | Fixed or percentage-based fees |
+| **Route Fees** | Fees for specific payment routes |
+| **Conversion Fees** | Currency conversion fees |
+| **Processing Fees** | Additional processing costs |
+
+<Info>
+  See [Transaction Fees](/guides/payments/transaction-fees) for a detailed breakdown of fees.
+</Info>
+
+## Payment Features
+
+### Idempotency
+
+Use idempotency keys to prevent duplicate payments:
+
+```javascript
+// Include Idempotency-Key header
+headers: {
+  'Idempotency-Key': 'unique-key-per-payment'
+}
+```
+
+### Payment References
+
+Provide custom references for tracking:
+
+| Field | Description |
+|-------|-------------|
+| **Reference** | Your internal reference for the payment |
+| **Description** | Payment description |
+| **Metadata** | Additional metadata |
+
+### Payment Limits
+
+Payments are subject to limits:
+
+| Limit Type | Description |
+|------------|-------------|
+| **Per-Transaction Limits** | Maximum amount per payment |
+| **Daily Limits** | Maximum total per day |
+| **Monthly Limits** | Maximum total per month |
+
+<Info>
+  Contact support to adjust limits based on your needs.
+</Info>
+
+## Best Practices
+
+<Tip>
+  - Always review payment quotes before confirming to understand fees and rates.
+  - Always use idempotency keys to prevent duplicate payments.
+  - Store payment references and IDs for tracking and reconciliation.
+  - Set up webhooks to monitor payment status in real-time.
+  - Implement proper error handling for failed payments.
+</Tip>

@@ -1,0 +1,338 @@
+---
+title: 'Transaction Fees'
+description: 'Understanding transaction fees and how they are calculated in Pooler'
+icon: coin-front
+---
+
+Understanding transaction fees is essential for managing payment costs. This guide explains the different types of fees, how they're calculated, and how to optimize costs.
+
+## Fee Types
+
+### Transaction Fees
+
+Fees charged per transaction:
+
+- **Fixed Fee** - Fixed amount per transaction (e.g., $0.50)
+- **Percentage Fee** - Percentage of transaction amount (e.g., 1%)
+- **Tiered Fee** - Fee varies by amount tier
+- **Hybrid Fee** - Combination of fixed and percentage
+
+
+TODO: Add diagram showing different fee types 
+<img src="/images/transaction-fee-types.png" alt="Transaction Fee Types Diagram" />
+
+
+### Route Fees
+
+Additional fees for specific payment routes:
+
+- **Route-Specific** - Fees vary by payment route
+- **Speed-Based** - Faster routes may have higher fees
+- **Coverage-Based** - Some routes have additional fees
+
+### Conversion Fees
+
+Fees for currency conversion:
+
+- **Conversion Fee** - Fee for converting between currencies
+- **Spread** - Margin added to exchange rate
+- **Combined** - May include both fixed and percentage components
+
+
+TODO: Add diagram showing conversion fee components 
+<img src="/images/conversion-fee-breakdown.png" alt="Conversion Fee Breakdown Diagram" />
+
+
+## Fee Structure
+
+### Fee Calculation
+
+
+TODO: Add diagram showing fee calculation flow 
+<img src="/images/fee-calculation-flow.png" alt="Fee Calculation Flow Diagram" />
+
+
+**Example Calculation:**
+
+```
+Payment Amount: 1,000 NGN
+Transaction Fee: 1% = 10 NGN
+Route Fee: 5 NGN
+Conversion Fee: 0 (same currency)
+
+Total Fees: 10 + 5 = 15 NGN
+Total Deduction: 1,000 + 15 = 1,015 NGN
+```
+
+**With Currency Conversion:**
+
+```
+Source Amount: 100 USD
+Destination: 150,000 NGN (at 1,500 NGN/USD)
+Transaction Fee: 1% = 1 USD
+Conversion Fee: 0.1% = 0.1 USD
+Route Fee: 0.5 USD
+
+Total Fees: 1 + 0.1 + 0.5 = 1.6 USD
+Total Deduction: 100 + 1.6 = 101.6 USD
+```
+
+## Fee Transparency
+
+### Fee Disclosure
+
+All fees are disclosed in payment quotes:
+
+```json
+{
+  "amount": 1000,
+  "currency": "NGN",
+  "fees": {
+    "transaction_fee": 10,
+    "route_fee": 5,
+    "conversion_fee": 0,
+    "total_fees": 15
+  },
+  "total_amount": 1015,
+  "fee_breakdown": {
+    "transaction_fee": {
+      "type": "percentage",
+      "rate": 0.01,
+      "amount": 10
+    },
+    "route_fee": {
+      "type": "fixed",
+      "amount": 5
+    }
+  }
+}
+```
+
+
+TODO: Add diagram showing fee breakdown in payment quote 
+<img src="/images/fee-breakdown-diagram.png" alt="Fee Breakdown Diagram" />
+
+
+### Fee Information Sources
+
+Fees are available in:
+
+- **Payment Quotes** - Complete fee breakdown
+- **API Responses** - Fee details in responses
+- **Dashboard** - Fee information in transaction history
+- **Transaction Records** - Fees recorded in all transactions
+
+## Fee Factors
+
+### Factors Affecting Fees
+
+**Payment Amount**
+- Larger amounts may have different fee structures
+- Some fees are percentage-based
+- Minimum fees may apply
+
+**Payment Route**
+- Different routes have different fees
+- Faster routes may cost more
+- Route-specific fees apply
+
+**Currency Conversion**
+- Conversion adds conversion fees
+- Spread may vary by currency pair
+- Conversion fees are separate from transaction fees
+
+**Payment Type**
+- Different payment types may have different fees
+- Local vs cross-border fees differ
+- Route selection affects fees
+
+
+TODO: Add diagram showing factors affecting fees 
+<img src="/images/fee-factors-diagram.png" alt="Fee Factors Diagram" />
+
+
+## Fee Optimization
+
+### Cost Optimization Strategies
+
+**Strategy 1: Route Optimization**
+
+Choose cost-effective routes:
+
+- Compare route fees
+- Use cheaper routes when speed isn't critical
+- Optimize route selection for cost
+
+**Strategy 2: Bulk Payments**
+
+Process payments in bulk:
+
+- May qualify for volume discounts
+- Reduce per-transaction overhead
+- Optimize route usage
+
+**Strategy 3: Currency Management**
+
+Optimize currency conversions:
+
+- Minimize conversions when possible
+- Time conversions for favorable rates
+- Use direct currency pairs when available
+
+**Strategy 4: Payment Timing**
+
+Time payments strategically:
+
+- Avoid peak-time fees if applicable
+- Process during cost-effective periods
+- Batch payments for efficiency
+
+
+TODO: Add diagram showing fee optimization strategies 
+<img src="/images/fee-optimization-strategies.png" alt="Fee Optimization Strategies Diagram" />
+
+
+## Fee Estimation
+
+### Estimate Fees Before Payment
+
+Use payment quotes to estimate fees:
+
+```javascript
+// Get fee estimate
+const quote = await poolerClient.post('/payments/initiate', {
+  amount: 1000,
+  currency: 'NGN',
+  recipient_id: recipientId
+});
+
+const fees = quote.data.data.fees;
+console.log('Estimated Fees:', fees.total_fees);
+console.log('Total Amount:', quote.data.data.total_amount);
+```
+
+### Fee Calculator
+
+Calculate fees for planning:
+
+- Use API to get quotes for different amounts
+- Compare fees across different scenarios
+- Plan payment costs in advance
+
+## Fee Models
+
+### Model 1: Pay-as-You-Go
+
+Pay fees per transaction:
+
+- **Pros:** No upfront costs, pay only for usage
+- **Cons:** Fees per transaction, may be higher for high volume
+- **Best For:** Low to medium volume, variable usage
+
+### Model 2: Volume-Based
+
+Fees reduce with volume:
+
+- **Pros:** Lower fees at higher volumes, cost savings
+- **Cons:** May require minimum volumes
+- **Best For:** High volume, consistent usage
+
+### Model 3: Subscription
+
+Monthly fee with reduced transaction fees:
+
+- **Pros:** Predictable costs, lower per-transaction fees
+- **Cons:** Fixed monthly cost, may not be cost-effective for low volume
+- **Best For:** Consistent high volume, predictable usage
+
+
+TODO: Add diagram comparing fee models 
+<img src="/images/fee-models-comparison.png" alt="Fee Models Comparison Diagram" />
+
+
+## Fee Tracking
+
+### Track Fees Over Time
+
+Monitor fee trends:
+
+- **Total Fees** - Track total fees paid
+- **Average Fee** - Calculate average fee per transaction
+- **Fee Trends** - Identify fee trends over time
+- **Cost Analysis** - Analyze costs by route, currency, etc.
+
+### Fee Reporting
+
+Generate fee reports:
+
+- **Transaction Reports** - Fees per transaction
+- **Periodic Reports** - Fees by period (daily, weekly, monthly)
+- **Category Reports** - Fees by category (route, currency, etc.)
+- **Comparison Reports** - Compare fees across periods
+
+
+TODO: Add diagram showing fee tracking and reporting 
+<img src="/images/fee-tracking-reporting.png" alt="Fee Tracking and Reporting Diagram" />
+
+
+## Fee Reconciliation
+
+### Reconcile Fees
+
+Reconcile fees with transactions:
+
+<Steps>
+  <Step title="Collect Fee Data">
+    Gather fee data from:
+    - Payment quotes
+    - Transaction records
+    - API responses
+  </Step>
+  
+  <Step title="Calculate Expected Fees">
+    Calculate expected fees based on:
+    - Payment amounts
+    - Fee structures
+    - Routes used
+  </Step>
+  
+  <Step title="Compare with Actual">
+    Compare expected fees with actual fees charged.
+  </Step>
+  
+  <Step title="Investigate Discrepancies">
+    Investigate any discrepancies:
+    - Verify fee calculations
+    - Check for fee changes
+    - Contact support if needed
+  </Step>
+</Steps>
+
+## Best Practices
+
+<Tip>
+  **Review Fee Quotes** - Always review fee breakdowns in payment quotes before confirming.
+</Tip>
+
+<Tip>
+  **Understand Fee Structure** - Understand how fees are calculated for your use case.
+</Tip>
+
+<Tip>
+  **Optimize Routes** - Choose cost-effective routes when speed isn't critical.
+</Tip>
+
+<Tip>
+  **Track Fees** - Monitor fees over time to identify optimization opportunities.
+</Tip>
+
+<Tip>
+  **Contact Support** - Reach out for fee optimization for high-volume scenarios.
+</Tip>
+
+## Next Steps
+
+- Review [Payment Flows](/guides/payments/payment-flows) to see fees in context
+- Understand [Route Management](/guides/payments/route-management) for route cost optimization
+- Learn about [Conversion Rates](/guides/payments/conversion-rates) for conversion fee details
+

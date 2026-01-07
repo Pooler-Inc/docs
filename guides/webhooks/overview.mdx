@@ -1,0 +1,157 @@
+---
+title: 'Overview'
+description: 'Understanding webhooks and how to receive real-time notifications from Pooler'
+icon: barcode
+---
+
+Webhooks are HTTP callbacks that notify your application in real-time when events occur in your Pooler account. Instead of polling the API for updates, webhooks push event data to your server as events happen.
+
+## What are Webhooks?
+
+Webhooks are HTTP POST requests sent by Pooler to a URL you specify when specific events occur. They allow your application to react immediately to events like payment completions, virtual account transactions, and errors.
+
+## Why Use Webhooks?
+
+### Benefits
+
+<CardGroup cols={2}>
+  <Card title="Real-Time Updates" icon="bolt">
+    Receive instant notifications when events occur - no polling required.
+  </Card>
+  
+  <Card title="Efficient" icon="chart-line">
+    Reduce API calls and server load by receiving only relevant events.
+  </Card>
+  
+  <Card title="Reliable" icon="shield-check">
+    Webhooks include retry mechanisms for failed deliveries.
+  </Card>
+  
+  <Card title="Event-Driven" icon="code-branch">
+    Build event-driven architectures that react to changes immediately.
+  </Card>
+  
+  <Card title="Better UX" icon="user-check">
+    Update your application UI in real-time based on payment status.
+  </Card>
+  
+  <Card title="Automation" icon="robot">
+    Automate workflows based on payment events without manual intervention.
+  </Card>
+</CardGroup>
+
+## How Webhooks Work
+
+### Webhook Flow
+
+<Steps>
+  <Step title="Event Occurs">
+    An event occurs in your Pooler account (e.g., payment completed, virtual account payment received).
+  </Step>
+  
+  <Step title="Webhook Triggered">
+    Pooler prepares a webhook payload with event data.
+  </Step>
+  
+  <Step title="HTTP POST Request">
+    Pooler sends an HTTP POST request to your webhook URL.
+  </Step>
+  
+  <Step title="Your Server Receives">
+    Your webhook endpoint receives and processes the request.
+  </Step>
+  
+  <Step title="Response Sent">
+    Your server responds with HTTP 200 to acknowledge receipt.
+  </Step>
+  
+  <Step title="Retry if Failed">
+    If your server doesn't respond or returns an error, Pooler retries the webhook 4 times before back-off.
+  </Step>
+</Steps>
+
+## Webhook Events
+
+### Available Events
+
+Pooler sends webhooks for various events:
+
+| Category | Event Name | Description |
+|----------|------------|-------------|
+| Payment | `payment.initiated` | Payment quote created |
+| Payment | `payment.completed` | Payment successfully processed |
+| Payment | `payment.failed` | Payment processing failed |
+| Payment | `payment.rejected` | Payment was rejected |
+| Virtual Account | `virtual_account.payment_received` | Payment received in virtual account |
+| Virtual Account | `virtual_account.created` | Virtual account created |
+| Virtual Account | `virtual_account.updated` | Virtual account updated |
+| Recipient | `recipient.created` | Recipient created |
+| Recipient | `recipient.verified` | Recipient verification completed |
+| Recipient | `recipient.verification_failed` | Recipient verification failed |
+| Account | `account.balance_low` | Account balance below threshold |
+| Account | `account.updated` | Account details updated |
+
+<Info>
+  See the [Webhook Events API](/api-reference/webhooks/list-events) for a complete list of available events.
+</Info>
+
+## Setting Up Webhooks
+
+### Step 1: Create Webhook Endpoint
+
+Create an HTTP endpoint in your application to receive webhooks:
+
+<CodeGroup>
+```javascript Node.js
+// Express.js example
+app.post('/webhooks/pooler', async (req, res) => {
+  const webhook = req.body;
+  
+  // Verify webhook signature
+  if (!verifyWebhookSignature(req)) {
+    return res.status(401).send('Invalid signature');
+  }
+  
+  // Process webhook
+  await processWebhook(webhook);
+  
+  // Respond quickly
+  res.status(200).send('OK');
+});
+```
+
+```python Python
+# Flask example
+@app.route('/webhooks/pooler', methods=['POST'])
+def handle_webhook():
+    webhook = request.json
+    
+    # Verify webhook signature
+    if not verify_webhook_signature(request):
+        return 'Invalid signature', 401
+    
+    # Process webhook
+    process_webhook(webhook)
+    
+    # Respond quickly
+    return 'OK', 200
+```
+</CodeGroup>
+
+### Step 2: Configure Webhook URL
+
+Configure your webhook URL in the Pooler dashboard:
+
+1. Navigate to **Settings** → **Developers**
+2. Add your webhook URL
+3. Select events you want to receive
+4. Save configuration
+
+### Step 3: Test Webhook
+
+Use the [Trigger Events API](/api-reference/webhooks/trigger-events) to test your webhook endpoint:
+
+```bash
+curl -X POST "https://api.usepooler.com/webhooks/events/trigger/{event_id}" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```

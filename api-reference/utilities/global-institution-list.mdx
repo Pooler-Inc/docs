@@ -1,0 +1,35 @@
+---
+title: 'Global Institution List'
+openapi: 'GET /utils/global-institution-list'
+---
+
+Retrieve a comprehensive list of financial institutions (banks) supported by the platform, optionally filtered by country.
+
+## Overview
+
+This endpoint returns a complete list of all financial institutions (banks, microfinance banks, payment service banks, etc.) that are supported by Pooler. This is useful for:
+
+- Populating bank selection dropdowns
+- Validating bank codes
+- Finding institution codes for payments
+
+## Query Parameters
+
+<ParamField query="country" type="string">
+  Filter institutions by country name (e.g., "ghana", "nigeria")
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="array">
+  Array of institution objects, each containing:
+  
+  - `institution_name`: Full name of the financial institution
+  - `institution_code`: Institution code (used for payments)
+  - `institution_country`: Country where the institution operates
+</ResponseField>
+
+<Note>
+  The institution list includes banks, microfinance banks, payment service banks, and other financial institutions. Use the institution code when creating recipients or initiating payments.
+</Note>
+

@@ -1,0 +1,35 @@
+---
+title: 'Query Payment Status'
+openapi: 'GET /payments/tsq/{reference}'
+---
+
+Query the status of a payment transaction using its reference number. This is useful for checking payment status without knowing the payment ID.
+
+## Overview
+
+This endpoint allows you to retrieve payment information using the payment reference number. It's particularly useful for transaction status queries (TSQ) when you only have the reference.
+
+## Path Parameters
+
+<ParamField path="reference" type="string" required>
+  Payment reference number (e.g., "PLR-55b8081c")
+</ParamField>
+
+## Response
+
+<ResponseField name="data" type="object">
+  Payment transaction details including:
+  
+  - `id`: Payment transaction ID
+  - `reference`: Payment reference
+  - `status`: Payment status (pending, completed, failed)
+  - `amount`: Payment amount
+  - `currency`: Currency code
+  - `description`: Payment description
+  - `is_completed`: Whether payment is completed
+  - `is_reversed`: Whether payment was reversed
+  - `transaction_date`: When the transaction occurred
+  - `created_at`: When the payment was created
+  - `updated_at`: When the payment was last updated
+</ResponseField>
+

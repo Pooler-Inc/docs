@@ -1,0 +1,236 @@
+---
+title: 'Payment Flows'
+description: 'Detailed explanation of payment flows and processing in Pooler'
+icon: arrow-progress
+---
+
+Understanding payment flows is essential for building reliable payment integrations. This guide explains the complete payment flow from initiation to completion, including error handling and edge cases.
+
+## Standard Payment Flow
+
+### Step-by-Step Flow
+
+<Steps>
+  <Step title="1. Create Recipient (Optional)">
+    If recipient doesn't exist, create recipient record with bank account details.
+    
+    <CodeGroup>
+    ```javascript Create Recipient
+    const recipient = await poolerClient.post('/payments/recipients', {
+      account_number: '1234567890',
+      account_name: 'John Doe',
+      account_type: 'individual',
+      account_currency: 'NGN',
+      account_country_code: 'Nigeria',
+      account_bank_name: 'Pooler Bank',
+      account_bank_code: 'POOLER001'
+    });
+    ```
+    </CodeGroup>
+  </Step>
+  
+  <Step title="2. Initiate Payment">
+    Create payment quote by calling the initiate endpoint.
+    
+    <CodeGroup>
+    ```javascript Initiate Payment
+    const quote = await poolerClient.post('/payments/initiate', {
+      amount: 1000,
+      currency: 'NGN',
+      description: 'Payment for services',
+      reference: 'PAY-001',
+      recipient_id: recipient.data.data.id
+    });
+    ```
+    </CodeGroup>
+  </Step>
+  
+  <Step title="3. Review Quote">
+    Review the payment quote including:
+    - Payment amount
+    - Fees breakdown
+    - Exchange rate (if applicable)
+    - Total amount to deduct
+    - Quote expiration time
+    
+    <CodeGroup>
+    ```javascript Review Quote
+    const quoteData = quote.data.data;
+    console.log('Amount:', quoteData.amount);
+    console.log('Fees:', quoteData.fees);
+    console.log('Exchange Rate:', quoteData.exchange_rate);
+    console.log('Total:', quoteData.total_amount);
+    console.log('Expires At:', quoteData.expires_at);
+    ```
+    </CodeGroup>
+  </Step>
+  
+  <Step title="4. Confirm Payment">
+    Confirm the payment using quote ID and reference.
+    
+    <CodeGroup>
+    ```javascript Confirm Payment
+    const payment = await poolerClient.post('/payments/complete', {
+      quote_id: quoteData.quote_id,
+      reference: quoteData.reference
+    });
+    ```
+    </CodeGroup>
+  </Step>
+  
+  <Step title="5. Payment Processing">
+    Pooler processes the payment:
+    - Validates payment details
+    - Checks account balance
+    - Selects payment route
+    - Initiates transfer through payment network
+  </Step>
+  
+  <Step title="6. Payment Completion">
+    Payment is completed and recipient receives funds.
+    
+    <CodeGroup>
+    ```javascript Check Status
+    const status = await poolerClient.get(`/payments/${payment.data.data.id}`);
+    console.log('Status:', status.data.data.status);
+    ```
+    </CodeGroup>
+  </Step>
+</Steps>
+
+## Payment States and Transitions
+
+### State Descriptions
+
+| Status | Description |
+|--------|-------------|
+| `initiated` | Payment quote created<br/>Waiting for confirmation<br/>Quote expires after 5 minutes |
+| `pending` | Payment confirmed<br/>Awaiting processing<br/>Funds reserved |
+| `processing` | Payment being processed<br/>Transfer initiated through payment network<br/>Cannot be cancelled |
+| `completed` | Payment successfully completed<br/>Recipient received funds<br/>Final state |
+| `failed` | Payment processing failed<br/>Funds returned (if deducted)<br/>Can retry with new payment |
+| `rejected` | Payment was rejected<br/>May be due to compliance or validation<br/>Funds returned |
+
+## Error Handling
+
+### Common Errors and Handling
+
+**Insufficient Balance**
+
+```javascript
+try {
+  await poolerClient.post('/payments/initiate', paymentData);
+} catch (error) {
+  if (error.response?.status === 400 && error.response?.data?.message?.includes('insufficient')) {
+    // Handle insufficient balance
+    await topUpAccount();
+    // Retry payment
+  }
+}
+```
+
+**Invalid Recipient**
+
+```javascript
+try {
+  await poolerClient.post('/payments/initiate', paymentData);
+} catch (error) {
+  if (error.response?.status === 400 && error.response?.data?.message?.includes('recipient')) {
+    // Verify recipient details
+    const recipient = await verifyRecipient(recipientId);
+    // Update recipient if needed
+  }
+}
+```
+
+**Quote Expired**
+
+```javascript
+try {
+  await poolerClient.post('/payments/complete', { quote_id, reference });
+} catch (error) {
+  if (error.response?.status === 400 && error.response?.data?.message?.includes('expired')) {
+    // Create new quote
+    const newQuote = await poolerClient.post('/payments/initiate', paymentData);
+    // Confirm with new quote
+  }
+}
+```
+
+### Error Flow Diagram
+
+### Webhook Events in Payment Flow
+
+| Event | Description |
+|-------|-------------|
+| `payment.initiated` | Fired when payment quote is created<br/>Contains quote details |
+| `payment.completed` | Fired when payment is successfully completed<br/>Contains final payment details |
+| `payment.failed` | Fired when payment processing fails<br/>Contains error information |
+| `payment.rejected` | Fired when payment is rejected<br/>Contains rejection reason |
+
+### Webhook Handling Example
+
+```javascript
+// Webhook handler
+async function handlePaymentWebhook(webhook) {
+  const { event, data } = webhook;
+  
+  switch (event) {
+    case 'payment.completed':
+      await updateOrderStatus(data.reference, 'paid');
+      await notifyCustomer(data.reference);
+      break;
+      
+    case 'payment.failed':
+      await handlePaymentFailure(data);
+      await notifyCustomerOfFailure(data.reference);
+      break;
+      
+    case 'payment.rejected':
+      await handlePaymentRejection(data);
+      break;
+  }
+}
+```
+
+## Payment Retry Strategies
+
+### When to Retry
+
+Retry payments in these scenarios:
+
+| Scenario | Description |
+|----------|-------------|
+| **Network Errors** | Temporary network issues |
+| **Timeout Errors** | Request timeouts |
+| **Rate Limiting** | Rate limit errors (with backoff) |
+| **Temporary Failures** | Transient service errors |
+
+### Retry Implementation
+
+```javascript
+async function initiatePaymentWithRetry(paymentData, maxRetries = 3) {
+  for (let attempt = 0; attempt < maxRetries; attempt++) {
+    try {
+      const quote = await poolerClient.post('/payments/initiate', paymentData);
+      return quote;
+    } catch (error) {
+      if (attempt === maxRetries - 1) throw error;
+      
+      // Exponential backoff
+      const delay = Math.pow(2, attempt) * 1000;
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+  }
+}
+```
+## Best Practices
+
+<Tip>
+  - Review payment quotes before confirming to understand all costs.
+  - Implement logic to handle expired quotes and create new ones.
+  - Set up webhooks for real-time payment status updates instead of polling.
+  - Implement retry logic for transient failures with exponential backoff.
+  - Regularly check payment status for pending payments.
+  - Reconcile payments daily to catch issues early.
+</Tip>
