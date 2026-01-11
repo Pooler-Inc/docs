@@ -1,0 +1,77 @@
+---
+title: 'Payout Virtual Account'
+openapi: 'POST /accounts/virtual-accounts/payout'
+---
+
+Initiate a payout from a virtual account to transfer collected funds to a recipient bank account. This endpoint allows you to settle all collections from virtual accounts you have created.
+
+## Overview
+
+This endpoint enables you to transfer funds collected in your virtual accounts to any bank account. It's used when you want to payout all the collections from the virtual accounts you have created. The payout will be processed and you'll receive a transaction reference and estimated time of arrival (ETA).
+
+<Tip>
+  This endpoint is useful for settling collections from virtual accounts into your main business account or any designated recipient account.
+</Tip>
+
+## Request Body
+
+<ParamField body="amount" type="number" required>
+  The amount to payout in the account currency
+</ParamField>
+
+<ParamField body="recipient_name" type="string" required>
+  Name of the recipient account holder
+</ParamField>
+
+<ParamField body="recipient_account_number" type="string" required>
+  Bank account number of the recipient
+</ParamField>
+
+<ParamField body="recipient_bank_name" type="string" required>
+  Name of the recipient's bank
+</ParamField>
+
+<ParamField body="recipient_bank_code" type="string" required>
+  Bank code of the recipient's bank
+</ParamField>
+
+<ParamField body="description" type="string">
+  Description or note for the payout transaction
+</ParamField>
+
+<ParamField body="totp" type="string">
+  Time-based One-Time Password for additional security (if required)
+</ParamField>
+
+<ParamField body="is_initiation" type="boolean">
+  Whether this is an initiation request
+</ParamField>
+
+<ParamField body="is_api_request" type="boolean">
+  Whether this is an API request
+</ParamField>
+
+## Response
+
+<ResponseField name="success" type="boolean">
+  Indicates whether the payout request was processed successfully
+</ResponseField>
+
+<ResponseField name="message" type="string">
+  Response message describing the result
+</ResponseField>
+
+<ResponseField name="stan" type="string">
+  System Trace Audit Number (UUID) for tracking the transaction
+</ResponseField>
+
+<ResponseField name="data" type="object">
+  Payout transaction details including:
+  
+  - `reference`: Unique transaction reference for the payout (e.g., "WDL-d9c19654")
+  - `eta`: Estimated time of arrival for the payout completion (ISO 8601 format)
+  - `account_number`: Recipient account number
+  - `account_name`: Recipient account name
+  - `bank_name`: Recipient bank name
+  - `currency`: Currency code of the payout
+</ResponseField>

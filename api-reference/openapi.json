@@ -379,6 +379,38 @@
         }
       }
     },
+    "/accounts/virtual-accounts/payout": {
+      "post": {
+        "summary": "Payout Virtual Account",
+        "description": "Initiate a payout from a virtual account to transfer collected funds to a recipient bank account. This endpoint allows you to settle all collections from virtual accounts you have created.",
+        "operationId": "payoutVirtualAccount",
+        "tags": [
+          "Accounts"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PayoutVirtualAccountRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Payout initiated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PayoutVirtualAccountResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/webhooks/events": {
       "get": {
         "summary": "List Events",
@@ -1281,6 +1313,102 @@
             "items": {
               "$ref": "#/components/schemas/VirtualAccount"
             }
+          }
+        }
+      },
+      "PayoutVirtualAccountRequest": {
+        "type": "object",
+        "required": [
+          "amount",
+          "recipient_name",
+          "recipient_account_number",
+          "recipient_bank_name",
+          "recipient_bank_code"
+        ],
+        "properties": {
+          "amount": {
+            "type": "number",
+            "description": "The amount to payout in the account currency"
+          },
+          "recipient_name": {
+            "type": "string",
+            "description": "Name of the recipient account holder"
+          },
+          "recipient_account_number": {
+            "type": "string",
+            "description": "Bank account number of the recipient"
+          },
+          "recipient_bank_name": {
+            "type": "string",
+            "description": "Name of the recipient's bank"
+          },
+          "recipient_bank_code": {
+            "type": "string",
+            "description": "Bank code of the recipient's bank"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description or note for the payout transaction"
+          },
+          "totp": {
+            "type": "string",
+            "description": "Time-based One-Time Password for additional security (if required)"
+          },
+          "is_initiation": {
+            "type": "boolean",
+            "description": "Whether this is an initiation request"
+          },
+          "is_api_request": {
+            "type": "boolean",
+            "description": "Whether this is an API request"
+          }
+        }
+      },
+      "PayoutVirtualAccountResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "stan": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "data": {
+            "$ref": "#/components/schemas/PayoutVirtualAccountData"
+          }
+        }
+      },
+      "PayoutVirtualAccountData": {
+        "type": "object",
+        "properties": {
+          "reference": {
+            "type": "string",
+            "description": "Unique transaction reference for the payout"
+          },
+          "eta": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Estimated time of arrival for the payout completion"
+          },
+          "account_number": {
+            "type": "string",
+            "description": "Recipient account number"
+          },
+          "account_name": {
+            "type": "string",
+            "description": "Recipient account name"
+          },
+          "bank_name": {
+            "type": "string",
+            "description": "Recipient bank name"
+          },
+          "currency": {
+            "type": "string",
+            "description": "Currency code of the payout"
           }
         }
       },
