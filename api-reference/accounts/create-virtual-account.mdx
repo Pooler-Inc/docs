@@ -1,6 +1,6 @@
 ---
-title: 'Create Corporate Virtual Account'
-openapi: 'POST /accounts/corporate-virtual-accounts'
+title: 'Create Virtual Account'
+openapi: 'POST /accounts/virtual-accounts'
 ---
 
 Create a new virtual account for receiving payments. Virtual accounts can be used to collect payments from customers and are automatically generated with unique account numbers.
@@ -12,34 +12,34 @@ Virtual accounts are bank accounts that are created on-demand for receiving paym
 ## Request Body
 
 <ParamField body="account_type" type="string" required>
-  Type of account holder: "business"
+  Type of account holder: "individual" or "business"
 </ParamField>
 
-<ParamField body="business_name" type="string" required>
-  Business name (required for corporate accounts)
+<ParamField body="account_name" type="string" required>
+  Name of the account holder
+</ParamField>
+
+<ParamField body="first_name" type="string">
+  First name (required for individual accounts)
+</ParamField>
+
+<ParamField body="last_name" type="string">
+  Last name (required for individual accounts)
 </ParamField>
 
 <ParamField body="display_name" type="string">
   Display name for the account
 </ParamField>
 
-<ParamField body="rc_number" type="string" required>
- Business RC Number
-</ParamField>
-
-<ParamField body="corporate_account_type" type="string" required>
-  Type of Business: "company", "business", "incorporated_trustees", "limited_partnersip", or "limited_liability_partnership"
-</ParamField>
-
 <ParamField body="email" type="string" required>
   Email address of the account holder
 </ParamField>
 
-<ParamField body="bvn" type="string" required>
+<ParamField body="bvn" type="string">
   Bank Verification Number (required for Nigerian accounts)
 </ParamField>
 
-<ParamField body="mobile_number" type="string" required>
+<ParamField body="mobile_number" type="string">
   Mobile phone number
 </ParamField>
 
@@ -57,10 +57,13 @@ Virtual accounts are bank accounts that are created on-demand for receiving paym
 <ResponseField name="data" type="object">
   Virtual account details including:
   
-  - `message`: Virtual account creation message
-  - `reference`: Reference tied to the virtual account
-  - `status`: The status of the virtual account. The status will always be pending. Webhook event will be sent to you with the final status of the virtual account
-  - `account_type`: The type of account you are trying to create. Business
+  - `id`: Virtual account UUID
+  - `currency`: Account currency code
+  - `account_number`: Generated account number
+  - `account_name`: Account holder name
+  - `bank_name`: Bank name
+  - `is_active`: Whether account is active
+  - `created_at`: Creation timestamp
 </ResponseField>
 
 <Note>
