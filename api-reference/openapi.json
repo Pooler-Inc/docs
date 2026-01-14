@@ -297,7 +297,39 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/VirtualAccountResponse"
+                  "$ref": "#/components/schemas/IndividualVirtualAccountResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/corporate-virtual-accounts": {
+      "post": {
+        "summary": "Create Corporate Virtual Account",
+        "description": "Create a new corporate virtual account for receiving payments. Virtual accounts can be used to collect payments from customers.",
+        "operationId": "createVirtualAccount",
+        "tags": [
+          "Accounts"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCorporateVirtualAccountRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Virtual account created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CorporateVirtualAccountResponse"
                 }
               }
             }
@@ -345,37 +377,7 @@
         }
       }
     },
-    "/accounts/corporate-virtual-accounts": {
-      "post": {
-        "summary": "Create Corporate Virtual Account",
-        "description": "Create a new corporate virtual account for receiving payments. Virtual accounts can be used to collect payments from customers.",
-        "operationId": "createVirtualAccount",
-        "tags": [
-          "Accounts"
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateCorporateVirtualAccountRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "202": {
-            "description": "Virtual account created successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/VirtualAccountResponse"
-                }
-              }
-            }
-          }
-        }
-      },
+    "/accounts/virtual-accounts": {
       "get": {
         "summary": "List Virtual Accounts",
         "description": "Retrieve a paginated list of all virtual accounts associated with your account.",
@@ -1256,7 +1258,6 @@
           "last_name",
           "dob",
           "mobile_number",
-          "email",
           "bvn"
         ],
         "properties": {
@@ -1282,7 +1283,8 @@
           "dob": {
             "type": "string",
             "description": "Date of birth of the account holder",
-            "format": "1999-05-09"
+            "format": "date",
+            "example": "1999-05-09"
           },
           "email": {
             "type": "string",
@@ -1303,6 +1305,41 @@
           }
         }
       },
+      "IndividualVirtualAccountResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "stan": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "data": {
+            "$ref": "#/components/schemas/IndividualVirtualAccount"
+          }
+        }
+      },
+      "IndividualVirtualAccount": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "account_type": {
+            "type": "string"
+          }
+        }
+      },
       "CreateCorporateVirtualAccountRequest": {
         "type": "object",
         "required": [
@@ -1312,7 +1349,6 @@
           "rc_number",
           "corporate_account_type",
           "mobile_number",
-          "email",
           "bvn"
         ],
         "properties": {
@@ -1364,6 +1400,41 @@
           }
         }
       },
+       "CorporateVirtualAccountResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "stan": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "data": {
+            "$ref": "#/components/schemas/CorporateVirtualAccount"
+          }
+        }
+      },
+      "CorporateVirtualAccount": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "account_type": {
+            "type": "string"
+          }
+        }
+      },
       "VirtualAccountResponse": {
         "type": "object",
         "properties": {
@@ -1385,17 +1456,46 @@
       "VirtualAccount": {
         "type": "object",
         "properties": {
-          "message": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "currency": {
+            "type": "string"
+          },
+          "account_number": {
+            "type": "string"
+          },
+          "account_name": {
+            "type": "string"
+          },
+          "bank_name": {
+            "type": "string"
+          },
+           "dob": {
             "type": "string"
           },
           "reference": {
             "type": "string"
           },
+          "account_type": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean"
+          },
           "status": {
             "type": "string"
           },
-          "account_type": {
+           "rc_number": {
             "type": "string"
+          },
+           "corporate_account_type": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time"
           }
         }
       },

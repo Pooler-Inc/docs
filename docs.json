@@ -141,7 +141,8 @@
           {
             "group": "Accounts",
             "pages": [
-              "api-reference/accounts/create-virtual-account",
+              "api-reference/accounts/create-individual-virtual-account",
+               "api-reference/accounts/create-corporate-virtual-account",
               "api-reference/accounts/list-virtual-accounts",
               "api-reference/accounts/retrieve-virtual-account",
               "api-reference/accounts/payout-virtual-account"
