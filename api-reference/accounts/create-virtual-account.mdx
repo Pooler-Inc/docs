@@ -15,10 +15,6 @@ Virtual accounts are bank accounts that are created on-demand for receiving paym
   Type of account holder: "individual" or "business"
 </ParamField>
 
-<ParamField body="account_name" type="string" required>
-  Name of the account holder
-</ParamField>
-
 <ParamField body="first_name" type="string">
   First name (required for individual accounts)
 </ParamField>
@@ -29,6 +25,10 @@ Virtual accounts are bank accounts that are created on-demand for receiving paym
 
 <ParamField body="display_name" type="string">
   Display name for the account
+</ParamField>
+
+<ParamField body="dob" type="string">
+  Date of birth of account holder: 1999-05-09
 </ParamField>
 
 <ParamField body="email" type="string" required>
@@ -57,13 +57,10 @@ Virtual accounts are bank accounts that are created on-demand for receiving paym
 <ResponseField name="data" type="object">
   Virtual account details including:
   
-  - `id`: Virtual account UUID
-  - `currency`: Account currency code
-  - `account_number`: Generated account number
-  - `account_name`: Account holder name
-  - `bank_name`: Bank name
-  - `is_active`: Whether account is active
-  - `created_at`: Creation timestamp
+  - `message`: Virtual account creation message
+  - `reference`: Reference tied to the virtual account
+  - `status`: The status of the virtual account. The status will always be pending. Webhook event will be sent to you with the final status of the virtual account
+  - `account_type`: The type of account you are trying to create. Individual or business
 </ResponseField>
 
 <Note>
