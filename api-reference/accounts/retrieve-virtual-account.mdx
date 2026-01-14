@@ -26,18 +26,13 @@ This endpoint returns comprehensive details about a single virtual account, incl
   - `bank_name`: Bank name
   - `currency_code`: Currency code
   - `active`: Whether account is active
-  - `amount`: Current balance
-  - `first_name`: First name
-  - `last_name`: Last name
-  - `email`: Email address
-  - `mobile_number`: Phone number
-  - `bvn`: Bank Verification Number
-  - `client_type`: Account type (individual/business)
+  - `account_type`: Account type (individual/business)
   - `metadata`: Additional metadata object
-  - `display_name`: Display name
-  - `account_status`: Account status
-  - `expiry_date`: Account expiry date
+  - `dob`: Date of birth of account holder if account is an individual account
+  - `reference`: Account reference
+  - `rc_number`: RC Number if account is a corporate/business account
+  - `corporate_account_type`: Corporate account type if account is a corporate/business account
+  - `status`: Status of account. Can be pending, active or failed
   - `created_at`: Creation timestamp
-  - `updated_at`: Last update timestamp
 </ResponseField>
 

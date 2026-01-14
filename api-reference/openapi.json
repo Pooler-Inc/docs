@@ -273,10 +273,10 @@
         }
       }
     },
-    "/accounts/virtual-accounts": {
+    "/accounts/individual-virtual-accounts": {
       "post": {
-        "summary": "Create Virtual Account",
-        "description": "Create a new virtual account for receiving payments. Virtual accounts can be used to collect payments from customers.",
+        "summary": "Create Individual Virtual Account",
+        "description": "Create a new individual virtual account for receiving payments. Virtual accounts can be used to collect payments from customers.",
         "operationId": "createVirtualAccount",
         "tags": [
           "Accounts"
@@ -286,24 +286,98 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateVirtualAccountRequest"
+                "$ref": "#/components/schemas/CreateIndividualVirtualAccountRequest"
               }
             }
           }
         },
         "responses": {
-          "200": {
+          "202": {
             "description": "Virtual account created successfully",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/VirtualAccountResponse"
+                  "$ref": "#/components/schemas/IndividualVirtualAccountResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/corporate-virtual-accounts": {
+      "post": {
+        "summary": "Create Corporate Virtual Account",
+        "description": "Create a new corporate virtual account for receiving payments. Virtual accounts can be used to collect payments from customers.",
+        "operationId": "createVirtualAccount",
+        "tags": [
+          "Accounts"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCorporateVirtualAccountRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Virtual account created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CorporateVirtualAccountResponse"
                 }
               }
             }
           }
         }
       },
+      "get": {
+        "summary": "List Virtual Accounts",
+        "description": "Retrieve a paginated list of all virtual accounts associated with your account.",
+        "operationId": "listVirtualAccounts",
+        "tags": [
+          "Accounts"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number for pagination",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "Number of items per page",
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Virtual accounts retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedVirtualAccountsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/accounts/virtual-accounts": {
       "get": {
         "summary": "List Virtual Accounts",
         "description": "Retrieve a paginated list of all virtual accounts associated with your account.",
@@ -1175,25 +1249,24 @@
           }
         }
       },
-      "CreateVirtualAccountRequest": {
+      "CreateIndividualVirtualAccountRequest": {
         "type": "object",
         "required": [
           "account_type",
-          "account_name",
-          "email"
+          "email",
+          "first_name",
+          "last_name",
+          "dob",
+          "mobile_number",
+          "bvn"
         ],
         "properties": {
           "account_type": {
             "type": "string",
             "enum": [
-              "individual",
-              "business"
+              "individual"
             ],
             "description": "Type of account holder"
-          },
-          "account_name": {
-            "type": "string",
-            "description": "Name of the account holder"
           },
           "first_name": {
             "type": "string",
@@ -1206,6 +1279,12 @@
           "display_name": {
             "type": "string",
             "description": "Display name for the account"
+          },
+          "dob": {
+            "type": "string",
+            "description": "Date of birth of the account holder",
+            "format": "date",
+            "example": "1999-05-09"
           },
           "email": {
             "type": "string",
@@ -1223,6 +1302,136 @@
           "metadata": {
             "type": "object",
             "description": "Additional metadata"
+          }
+        }
+      },
+      "IndividualVirtualAccountResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "stan": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "data": {
+            "$ref": "#/components/schemas/IndividualVirtualAccount"
+          }
+        }
+      },
+      "IndividualVirtualAccount": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "account_type": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateCorporateVirtualAccountRequest": {
+        "type": "object",
+        "required": [
+          "account_type",
+          "email",
+          "business_name",
+          "rc_number",
+          "corporate_account_type",
+          "mobile_number",
+          "bvn"
+        ],
+        "properties": {
+          "account_type": {
+            "type": "string",
+            "enum": [
+              "business"
+            ],
+            "description": "Type of account holder"
+          },
+          "business_name": {
+            "type": "string",
+            "description": "Business name (for corporate accounts)"
+          },
+          "display_name": {
+            "type": "string",
+            "description": "Display name for the account"
+          },
+          "rc_number": {
+            "type": "string",
+            "description": "RC Number of the business"
+          },
+          "corporate_account_type": {
+            "type": "string",
+            "enum": [
+              "company",
+              "business",
+              "incorporated_trustees",
+              "limited_partnersip",
+              "limited_liability_partnership"
+            ]
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Email address"
+          },
+          "bvn": {
+            "type": "string",
+            "description": "Bank Verification Number (for Nigerian accounts)"
+          },
+          "mobile_number": {
+            "type": "string",
+            "description": "Mobile phone number"
+          },
+          "metadata": {
+            "type": "object",
+            "description": "Additional metadata"
+          }
+        }
+      },
+       "CorporateVirtualAccountResponse": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          },
+          "stan": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "data": {
+            "$ref": "#/components/schemas/CorporateVirtualAccount"
+          }
+        }
+      },
+      "CorporateVirtualAccount": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "account_type": {
+            "type": "string"
           }
         }
       },
@@ -1263,8 +1472,26 @@
           "bank_name": {
             "type": "string"
           },
-          "is_active": {
+           "dob": {
+            "type": "string"
+          },
+          "reference": {
+            "type": "string"
+          },
+          "account_type": {
+            "type": "string"
+          },
+          "active": {
             "type": "boolean"
+          },
+          "status": {
+            "type": "string"
+          },
+           "rc_number": {
+            "type": "string"
+          },
+           "corporate_account_type": {
+            "type": "string"
           },
           "created_at": {
             "type": "string",
